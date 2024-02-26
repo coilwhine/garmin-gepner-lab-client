@@ -1,0 +1,14 @@
+.PrivacyStatementPage {
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding-l);
+    gap: var(--padding-m);
+    background-color: var(--color-2);
+    border-radius: var(--radius-s);
+    box-shadow: var(--light-shadow-m);
+
+    a {
+        color: var(--link-color-1);
+        text-decoration: underline;
+    }
+}
