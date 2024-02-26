@@ -16,9 +16,9 @@ function PrivacyStatementPage(): JSX.Element {
                 Prof. Yftach Gepner, at <a href="tel: +972506828501"> +972-506828501</a> or <a href="mailto: gepner@tauex.tau.ac.il">gepner@tauex.tau.ac.il</a>.
             </p>
 
-            <p>
+            <span>
                 Thank you for your participation.
-            </p>
+            </span>
             <Link to={"/"} className="btn">Return to The Main Page</Link>
         </div>
     );
