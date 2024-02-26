@@ -1,5 +1,5 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import './App.css'
+import './App.scss'
 import PrivacyStatementPage from './Components/PrivacyStatementPage/PrivacyStatementPage'
 import LayOut from './Components/LayOut/LayOut'
 import MainPage from './Components/MainPage/MainPage'

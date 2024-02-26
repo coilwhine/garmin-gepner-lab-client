@@ -30,6 +30,11 @@
     font-family: sans-serif;
 }
 
+html {
+    // overflow-x: hidden;
+    // overflow-y: hidden;
+}
+
 body {
     color: var(--text-color-1);
 }

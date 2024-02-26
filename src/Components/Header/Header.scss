@@ -1,8 +1,8 @@
 .Header {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
     padding: var(--padding-m);
     color: var(--text-color-2);
     background-color: var(--color-1);
