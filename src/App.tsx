@@ -3,6 +3,7 @@ import './App.scss'
 import PrivacyStatementPage from './Components/PrivacyStatementPage/PrivacyStatementPage'
 import LayOut from './Components/LayOut/LayOut'
 import MainPage from './Components/MainPage/MainPage'
+import ErrorPage from './Components/ErrorPage/ErrorPage'
 
 function App() {
 
@@ -11,8 +12,8 @@ function App() {
       <Route path='/' element={<LayOut />}>
         <Route index element={<MainPage />} />
 
-        <Route path="/privacys-tatement" element={<PrivacyStatementPage />} />
-        <Route path="*" element={<div>ERROR</div>} />
+        <Route path="/privacys-statement" element={<PrivacyStatementPage />} />
+        <Route path="*" element={<ErrorPage />} />
       </Route>
     )
   )

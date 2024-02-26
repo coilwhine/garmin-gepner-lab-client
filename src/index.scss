@@ -14,6 +14,10 @@
     --radius-m: 10px;
     --radius-l: 15px;
 
+    --text-shadow-s: 1px 1px 1px rgba(0, 0, 0, 0.2);
+    --text-shadow-m: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    --text-shadow-l: 3px 3px 4px rgba(0, 0, 0, 0.2);
+
     --dark-shadow-s: 1px 1px 1px 0px rgba(0, 0, 0, 0.2);
     --dark-shadow-m: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     --dark-shadow-l: 3px 3px 4px 2px rgba(0, 0, 0, 0.2);
@@ -30,11 +34,6 @@
     font-family: sans-serif;
 }
 
-html {
-    // overflow-x: hidden;
-    // overflow-y: hidden;
-}
-
 body {
     color: var(--text-color-1);
 }
@@ -44,4 +43,18 @@ label,
 a {
     cursor: pointer;
     text-decoration: none;
+}
+
+.btn {
+    color: var(--link-color-1);
+    width: fit-content;
+    padding: var(--padding-m);
+    border-radius: var(--radius-s);
+    box-shadow: var(--dark-shadow-m);
+    background-color: var(--text-color-2);
+    transition: box-shadow 150ms;
+
+    &:active {
+        box-shadow: var(--dark-shadow-s);
+    }
 }

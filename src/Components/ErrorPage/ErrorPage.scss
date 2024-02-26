@@ -1,19 +1,19 @@
-.PrivacyStatementPage {
+.ErrorPage {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    text-align: center;
     padding: var(--padding-l);
     gap: var(--padding-m);
     background-color: var(--color-2);
     border-radius: var(--radius-s);
     box-shadow: var(--light-shadow-m);
 
-    a {
-        color: var(--link-color-1);
-        text-decoration: underline;
-    }
-
-    .btn {
-        text-decoration: none;
+    .error-number {
+        text-shadow: var(--text-shadow-m);
+        font-size: 4em;
     }
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./PrivacyStatementPage.scss";
 
 function PrivacyStatementPage(): JSX.Element {
@@ -18,6 +19,7 @@ function PrivacyStatementPage(): JSX.Element {
             <p>
                 Thank you for your participation.
             </p>
+            <Link to={"/"} className="btn">Return to The Main Page</Link>
         </div>
     );
 }

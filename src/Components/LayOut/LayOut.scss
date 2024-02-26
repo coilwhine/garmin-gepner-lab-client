@@ -1,4 +1,7 @@
 .LayOut {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
     main {
         box-sizing: border-box;
