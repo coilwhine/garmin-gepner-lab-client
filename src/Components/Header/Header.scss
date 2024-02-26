@@ -1,4 +1,5 @@
 .Header {
+    position: relative;
     box-sizing: border-box;
     display: flex;
     align-items: center;
@@ -9,6 +10,27 @@
     background-color: var(--color-1);
 
     h1 {
-        font-size: 1.5em;
+        font-size: 1.3em;
+    }
+
+    .privacy-icon {
+        position: absolute;
+        bottom: -5px;
+        left: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--error-color);
+        font-size: 1.7em;
+        padding: var(--padding-s);
+        border-radius: 100%;
+        box-shadow: var(--dark-shadow-m);
+        background-color: var(--text-color-2);
+        transition: 100ms;
+
+        &:active {
+            box-shadow: var(--dark-shadow-s);
+            bottom: -7px;
+        }
     }
 }
