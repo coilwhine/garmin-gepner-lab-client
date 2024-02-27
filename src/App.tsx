@@ -1,4 +1,4 @@
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
+import { Navigate, Outlet, Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import './App.scss'
 import PrivacyStatementPage from './Components/PrivacyStatementPage/PrivacyStatementPage'
 import LayOut from './Components/LayOut/LayOut'
@@ -15,12 +15,26 @@ function App() {
   const userData = useSelector((state: { authData: User | null }) => state.authData);
   const dispatch = useDispatch();
 
+  function PrivateRoute() {
+    return userData ? <Outlet /> : <Navigate to="/login" replace />;
+  }
+
+  function AnonymousRoute() {
+    return userData ? <Navigate to="/" replace /> : <Outlet />;
+  }
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<LayOut />}>
-        <Route index element={userData ? <MainPage /> : <LoginPage />} />
+        <Route path="/" element={<PrivateRoute />}>
+          <Route index element={<MainPage />} />
+          <Route path="/privacys-statement" element={<PrivacyStatementPage />} />
+        </Route>
 
-        <Route path="/privacys-statement" element={<PrivacyStatementPage />} />
+        <Route element={<AnonymousRoute />}>
+          <Route path="/login" element={<LoginPage />} />
+        </Route>
+
         <Route path="*" element={<ErrorPage />} />
       </Route>
     )

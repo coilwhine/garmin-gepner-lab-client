@@ -29,7 +29,7 @@ function LoginForm(): JSX.Element {
                 />
                 <input
                     id="password-input"
-                    type="text"
+                    type="password"
                     placeholder="password"
                     {...register("password", { required: true })}
                 />
