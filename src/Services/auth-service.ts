@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { firebaseAuth } from "../firebase-config";
 
 class AuthService {
@@ -36,16 +36,6 @@ class AuthService {
             console.error(error);
         }
 
-    }
-
-    async monitorAuthState() {
-        onAuthStateChanged(firebaseAuth, user => {
-            if (user) {
-                console.log("User Is Loged");
-            } else {
-                console.log("User Isn't Loged ");
-            }
-        })
     }
 }
 
