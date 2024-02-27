@@ -6,20 +6,20 @@ import "./MainPage.scss";
 function MainPage(): JSX.Element {
 
     const userData = {
-        firstName: "Daniel",
-        lastName: "Hen",
-        age: 29,
+        email: "asd@asd",
+        password: "asdasd",
     };
 
     const userId = "-NreP0hWs6VyPukao51O";
 
-    const userFirstName = "Daniel";
+    const userEmail = "asd@asd";
 
     return (
         <div className="MainPage">
             <button className="btn" onClick={() => usersService.addNewUser(userData)}>add new user</button>
             <button className="btn" onClick={() => usersService.deleteUserById(userId)}>Delete Data</button>
-            <button className="btn" onClick={() => usersService.getUsersByFirstName(userFirstName)}>Get Data</button>
+            <button className="btn" onClick={() => usersService.getUsersByEmail(userEmail)}>Get Users By Email</button>
+            <button className="btn" onClick={() => usersService.getUserByEmail(userEmail)}>Get User By Email</button>
         </div>
     );
 }

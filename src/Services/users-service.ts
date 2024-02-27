@@ -4,7 +4,38 @@ import firebaseDB from "../firebase-config";
 
 class UsersService {
 
-    async getUsersByFirstName(firstName: string): Promise<UserModel[] | null> {
+    async getUserByEmail(email: string): Promise<UserModel | null> {
+
+        const usersRef = ref(firebaseDB, 'users');
+
+        try {
+            const usersSnapshot = await get(usersRef);
+
+            if (usersSnapshot.exists()) {
+
+                usersSnapshot.forEach((childSnapshot: DataSnapshot) => {
+                    const user = childSnapshot.val();
+                    if (user.email === email) {
+                        user.key = childSnapshot.key;
+                        console.log(user);
+                        return user;
+                    }
+                });
+
+                return null;
+
+            } else {
+                console.log("No user found in the database.");
+                return null;
+            }
+
+        } catch (error) {
+            console.error("Error getting user by email:", error);
+            throw error;
+        }
+    }
+
+    async getUsersByEmail(email: string): Promise<UserModel[] | null> {
 
         const usersRef = ref(firebaseDB, 'users');
 
@@ -17,7 +48,7 @@ class UsersService {
 
                 usersSnapshot.forEach((childSnapshot: DataSnapshot) => {
                     const user = childSnapshot.val();
-                    if (user.firstName === firstName) {
+                    if (user.email === email) {
                         userFound = true;
                         user.key = childSnapshot.key;
                         usersList.push(user);
@@ -27,7 +58,7 @@ class UsersService {
                     console.log(usersList);
                     return usersList;
                 } else {
-                    console.log("No user found with the specified first name.");
+                    console.log("No user found with the specified email.");
                     return null;
                 }
 
@@ -36,7 +67,7 @@ class UsersService {
                 return null;
             }
         } catch (error) {
-            console.error("Error getting user by first name:", error);
+            console.error("Error getting user by email:", error);
             throw error;
         }
     }
@@ -46,14 +77,12 @@ class UsersService {
         const dataRef = ref(firebaseDB, 'users/');
         const newUserRef = push(dataRef);
         try {
-            const result = await set(newUserRef, {
-                firstName: newUserData.firstName,
-                lastName: newUserData.lastName,
-                age: newUserData.age
+            await set(newUserRef, {
+                email: newUserData.email,
+                password: newUserData.password
             })
 
             console.log("Data added successfully with key:", newUserRef.key);
-            console.log(result);
             return;
 
         } catch (error) {
