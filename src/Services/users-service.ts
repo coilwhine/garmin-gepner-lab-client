@@ -2,7 +2,7 @@ import { DataSnapshot, get, getDatabase, push, ref, remove, set } from "firebase
 import { UserModel } from "../Models/user-modal";
 import firebaseApp from "../firebase-config";
 
-class DatabaseService {
+class UsersService {
 
     async getUsersByFirstName(firstName: string): Promise<UserModel[] | null> {
         const db = getDatabase(firebaseApp);
@@ -40,7 +40,7 @@ class DatabaseService {
         }
     }
 
-    async addNewUser(newUserData: UserModel) {
+    async addNewUser(newUserData: UserModel): Promise<void> {
 
         const db = getDatabase(firebaseApp);
         const dataRef = ref(db, 'users/');
@@ -53,25 +53,29 @@ class DatabaseService {
             })
 
             console.log("Data added successfully with key:", newUserRef.key);
-            return result
+            console.log(result);
+            return;
+
         } catch (error) {
             console.error("Error adding data:", error);
             throw error;
         };
     }
 
-    async deleteUserById(userId: string) {
+    async deleteUserById(userId: string): Promise<void> {
         const db = getDatabase(firebaseApp);
         const dataRef = ref(db, `users/${userId}`);
 
         try {
             await remove(dataRef);
             console.log("Data deleted successfully!");
+            return;
+
         } catch (error) {
             console.error("Error deleting data: ", error);
         };
     }
 }
 
-const databaseService = new DatabaseService();
-export default databaseService;
+const usersService = new UsersService();
+export default usersService;

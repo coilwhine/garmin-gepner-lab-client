@@ -1,5 +1,5 @@
 
-import databaseService from "../../Services/dataBase-service";
+import usersService from "../../Services/users-service";
 import "./MainPage.scss";
 
 
@@ -11,15 +11,15 @@ function MainPage(): JSX.Element {
         age: 29,
     };
 
-    const userId = "-NravxBRxiTURT1FT0yN";
+    const userId = "-NreN_pel1OCO9jJbc_-";
 
     const userFirstName = "Daniel";
 
     return (
         <div className="MainPage">
-            <button className="btn" onClick={() => databaseService.addNewUser(userData)}>add new user</button>
-            <button className="btn" onClick={() => databaseService.deleteUserById(userId)}>Delete Data</button>
-            <button className="btn" onClick={() => databaseService.getUsersByFirstName(userFirstName)}>Get Data</button>
+            <button className="btn" onClick={() => usersService.addNewUser(userData)}>add new user</button>
+            <button className="btn" onClick={() => usersService.deleteUserById(userId)}>Delete Data</button>
+            <button className="btn" onClick={() => usersService.getUsersByFirstName(userFirstName)}>Get Data</button>
         </div>
     );
 }
