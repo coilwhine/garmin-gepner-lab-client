@@ -1,25 +1,23 @@
 
-import usersService from "../../Services/users-service";
+// import authService from "../../Services/auth-service";
 import "./MainPage.scss";
 
 
 function MainPage(): JSX.Element {
 
-    const userData = {
-        email: "asd@asd",
-        password: "asdasd",
-    };
-
-    const userId = "-NreP0hWs6VyPukao51O";
-
-    const userEmail = "asd@asd";
+    // const userEmail = "hen.daniel47@gmail.com";
+    // const userPassword = "asdasd"
 
     return (
         <div className="MainPage">
-            <button className="btn" onClick={() => usersService.addNewUser(userData)}>add new user</button>
-            <button className="btn" onClick={() => usersService.deleteUserById(userId)}>Delete Data</button>
-            <button className="btn" onClick={() => usersService.getUsersByEmail(userEmail)}>Get Users By Email</button>
-            <button className="btn" onClick={() => usersService.getUserByEmail(userEmail)}>Get User By Email</button>
+
+            {/* <button className="btn" onClick={() => authService.login(userEmail, userPassword)}>Login</button>
+
+            <button className="btn" onClick={() => authService.signin(userEmail, userPassword)}>Signin</button>
+
+            <button className="btn" onClick={() => authService.logout()}>Logout</button>
+
+            <button className="btn" onClick={() => authService.monitorAuthState()}>User State</button> */}
         </div>
     );
 }

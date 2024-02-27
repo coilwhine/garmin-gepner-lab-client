@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
@@ -11,7 +12,6 @@ const firebaseConfig = {
     appId: import.meta.env.VITE_APP_ID
 };
 
-const firebaseApp = initializeApp(firebaseConfig);
-const firebaseDB = getDatabase(firebaseApp);
-
-export default firebaseDB;
+export const firebaseApp = initializeApp(firebaseConfig);
+export const firebaseDB = getDatabase(firebaseApp);
+export const firebaseAuth = getAuth(firebaseApp);

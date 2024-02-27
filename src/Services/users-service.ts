@@ -1,6 +1,6 @@
 import { DataSnapshot, get, push, ref, remove, set } from "firebase/database";
 import { UserModel } from "../Models/user-modal";
-import firebaseDB from "../firebase-config";
+import { firebaseDB } from "../firebase-config";
 
 class UsersService {
 
@@ -103,6 +103,7 @@ class UsersService {
             console.error("Error deleting data: ", error);
         };
     }
+
 }
 
 const usersService = new UsersService();

@@ -4,6 +4,8 @@ import PrivacyStatementPage from './Components/PrivacyStatementPage/PrivacyState
 import LayOut from './Components/LayOut/LayOut'
 import MainPage from './Components/MainPage/MainPage'
 import ErrorPage from './Components/ErrorPage/ErrorPage'
+import { useEffect } from 'react'
+import authService from './Services/auth-service'
 
 function App() {
 
@@ -17,6 +19,10 @@ function App() {
       </Route>
     )
   )
+
+  useEffect(() => {
+    authService.monitorAuthState();
+  }, [])
 
   return (
     <div className='App'>
