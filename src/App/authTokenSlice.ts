@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "firebase/auth";
 
 let initialState = null;
 
@@ -7,7 +6,7 @@ export const authTokenSlice = createSlice({
     name: 'authData',
     initialState,
     reducers: {
-        login: (state, action: PayloadAction<User | null>) => {
+        login: (state, action: PayloadAction<string>) => {
             state = action.payload;
             return state;
         },

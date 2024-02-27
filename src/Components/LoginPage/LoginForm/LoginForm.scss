@@ -1,0 +1,43 @@
+.LoginForm {
+    display: flex;
+    flex-direction: column;
+    padding: var(--padding-l);
+    gap: var(--padding-l);
+    background-color: var(--color-2);
+    width: 80%;
+    max-width: 250px;
+    border-radius: var(--radius-s);
+    box-shadow: var(--light-shadow-m);
+
+    .inputs-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--padding-l);
+
+        input {
+            padding: var(--padding-m) var(--padding-l);
+            border-radius: var(--radius-xl);
+            border: none;
+            box-shadow: var(--dark-shadow-m);
+            width: 80%;
+        }
+    }
+
+    .btns-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+
+        .btn {
+            width: 40%;
+
+            &.res-btn {
+                color: var(--text-color-2);
+                background-color: var(--error-color);
+            }
+        }
+    }
+}

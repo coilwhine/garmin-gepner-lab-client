@@ -27,10 +27,10 @@ function App() {
   )
 
   useEffect(() => {
-    onAuthStateChanged(firebaseAuth, user => {
+    onAuthStateChanged(firebaseAuth, (user: any) => {
       if (user) {
         console.log("User Is Loged");
-        dispatch(login(user));
+        dispatch(login(user.accessToken));
       } else {
         console.log("User Isn't Loged ");
         dispatch(logout());

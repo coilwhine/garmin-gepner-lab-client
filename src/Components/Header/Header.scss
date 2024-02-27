@@ -18,6 +18,22 @@
         }
     }
 
+    .logout-btn {
+        position: absolute;
+        right: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--error-color);
+        font-size: 1em;
+        padding: var(--padding-s);
+        border-radius: 100%;
+        box-shadow: var(--dark-shadow-m);
+        background-color: var(--text-color-2);
+        transition: 100ms;
+        border: none;
+    }
+
     .privacy-icon {
         position: absolute;
         bottom: -5px;
