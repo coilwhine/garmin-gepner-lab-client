@@ -26,6 +26,7 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<LayOut />}>
+
         <Route path="/" element={<PrivateRoute />}>
           <Route index element={<MainPage />} />
           <Route path="/privacys-statement" element={<PrivacyStatementPage />} />
@@ -36,6 +37,7 @@ function App() {
         </Route>
 
         <Route path="*" element={<ErrorPage />} />
+
       </Route>
     )
   )

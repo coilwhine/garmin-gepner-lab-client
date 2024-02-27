@@ -1,0 +1,17 @@
+.CoursesCard {
+    position: relative;
+    gap: var(--padding-m);
+
+    .add-cours-btn {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 10px;
+        left: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: 3em;
+        padding: var(--padding-s);
+    }
+}

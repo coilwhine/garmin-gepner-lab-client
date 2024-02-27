@@ -1,0 +1,35 @@
+.CourseRow {
+    position: relative;
+    top: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    gap: var(--padding-l);
+    padding: var(--padding-m);
+    background-color: var(--text-color-2);
+    width: 90%;
+    border-radius: var(--radius-m);
+    box-shadow: var(--dark-shadow-s);
+    cursor: pointer;
+    font-size: 0.9em;
+
+    &:active {
+        top: 1px;
+    }
+
+    &.header {
+        cursor: default;
+        font-weight: bold;
+
+        &:active {
+            top: 0;
+        }
+    }
+
+    &.row .course-name {
+        font-weight: bold;
+        color: var(--link-color-1);
+    }
+}
