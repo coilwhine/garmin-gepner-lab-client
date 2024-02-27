@@ -1,12 +1,12 @@
-import { DataSnapshot, get, getDatabase, push, ref, remove, set } from "firebase/database";
+import { DataSnapshot, get, push, ref, remove, set } from "firebase/database";
 import { UserModel } from "../Models/user-modal";
-import firebaseApp from "../firebase-config";
+import firebaseDB from "../firebase-config";
 
 class UsersService {
 
     async getUsersByFirstName(firstName: string): Promise<UserModel[] | null> {
-        const db = getDatabase(firebaseApp);
-        const usersRef = ref(db, 'users');
+
+        const usersRef = ref(firebaseDB, 'users');
 
         try {
             const usersSnapshot = await get(usersRef);
@@ -19,6 +19,7 @@ class UsersService {
                     const user = childSnapshot.val();
                     if (user.firstName === firstName) {
                         userFound = true;
+                        user.key = childSnapshot.key;
                         usersList.push(user);
                     }
                 });
@@ -42,8 +43,7 @@ class UsersService {
 
     async addNewUser(newUserData: UserModel): Promise<void> {
 
-        const db = getDatabase(firebaseApp);
-        const dataRef = ref(db, 'users/');
+        const dataRef = ref(firebaseDB, 'users/');
         const newUserRef = push(dataRef);
         try {
             const result = await set(newUserRef, {
@@ -63,8 +63,7 @@ class UsersService {
     }
 
     async deleteUserById(userId: string): Promise<void> {
-        const db = getDatabase(firebaseApp);
-        const dataRef = ref(db, `users/${userId}`);
+        const dataRef = ref(firebaseDB, `users/${userId}`);
 
         try {
             await remove(dataRef);

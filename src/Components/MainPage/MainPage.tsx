@@ -11,7 +11,7 @@ function MainPage(): JSX.Element {
         age: 29,
     };
 
-    const userId = "-NreN_pel1OCO9jJbc_-";
+    const userId = "-NreP0hWs6VyPukao51O";
 
     const userFirstName = "Daniel";
 
