@@ -22,15 +22,23 @@ function CoursesCard(): JSX.Element {
 
     }, []);
 
+    useEffect(() => {
+        if (openNewCourseForm) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    }, [openNewCourseForm])
+
     return (
         <div className="CoursesCard card">
             <h2>Courses</h2>
 
             <CourseRow name={"Id"} count={"Subjects"} start={"Start"} end={"End"} header={true} />
 
-            {coursesData?.map((data) => {
+            {coursesData ? coursesData.map((data) => {
                 return <CourseRow key={data.id} name={data.id} count={"22"} start={dateFormater(data.startDate)} end={dateFormater(data.endDate)} header={false} />
-            })}
+            }) : <div>No Courses Loaded...</div>}
 
             <button className="add-cours-btn btn"
                 onClick={() => setOpenNewCourseForm(true)}

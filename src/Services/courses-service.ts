@@ -75,7 +75,7 @@ class CoursesService {
             return course.id === newCourseData.id;
         });
 
-        if (idAlreadyExist[0]) {
+        if (idAlreadyExist && idAlreadyExist.length > 0) {
             console.log("Id all ready in use");
             return;
         }
