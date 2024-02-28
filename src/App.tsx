@@ -27,11 +27,11 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<LayOut />}>
+        <Route path="/privacys-statement" element={<PrivacyStatementPage />} />
 
         <Route path="/" element={<PrivateRoute />}>
           <Route index element={<MainPage />} />
           <Route path='/course/:key' element={<CoursePage />} />
-          <Route path="/privacys-statement" element={<PrivacyStatementPage />} />
         </Route>
 
         <Route element={<AnonymousRoute />}>

@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "./SubjectsCard.scss";
 import { CourseModel } from "../../../Models/course-modal";
 import { SubjectModel } from "../../../Models/subject-modal";

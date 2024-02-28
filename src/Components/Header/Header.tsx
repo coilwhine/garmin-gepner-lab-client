@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Header.scss";
 import { MdPrivacyTip } from "react-icons/md";
 import authService from "../../Services/auth-service";
@@ -15,7 +15,10 @@ function Header(): JSX.Element {
 
     return (
         <div className="Header">
-            <h1><span>Gepner Lab</span> - Garmin</h1>
+            <div className="heading">
+                <h1>Gepner Lab</h1>
+                <h2>Garmin</h2>
+            </div>
             <nav className="right-nav">
                 <NavLink className="privacy-icon nav-link" to={"/privacys-statement"}>
                     <MdPrivacyTip />

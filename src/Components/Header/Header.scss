@@ -5,33 +5,41 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: var(--padding-m);
+    padding: var(--padding-s);
     color: var(--text-color-2);
     background-color: var(--color-1);
 
-    h1 {
-        font-size: 1.1em;
+    .heading {
+        h1 {
+            position: relative;
+            right: 38px;
+            top: 8px;
+            font-size: 1.5em;
+            color: var(--color-2);
+        }
 
-        span {
-            font-size: 1.3em;
-
+        h2 {
+            position: relative;
+            left: 38px;
+            font-size: 2;
         }
     }
 
     nav {
+        z-index: 999;
         display: flex;
         align-items: center;
         justify-content: center;
         gap: var(--padding-l);
         position: absolute;
-        bottom: -9px;
+        bottom: -10px;
 
         &.right-nav {
-            right: 18px;
+            right: 16px;
         }
 
         &.left-nav {
-            left: 18px;
+            left: 16px;
         }
 
         .nav-link {
