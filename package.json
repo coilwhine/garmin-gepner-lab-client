@@ -12,6 +12,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
     "axios": "^1.6.7",
+    "dayjs": "^1.11.10",
     "firebase": "^10.8.0",
     "i": "^0.3.7",
     "jwt-decode": "^4.0.0",

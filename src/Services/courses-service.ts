@@ -74,7 +74,6 @@ class CoursesService {
         });
 
         if (idAlreadyExist[0]) {
-            console.log(idAlreadyExist);
             console.log("Id all ready in use");
             return;
         }
