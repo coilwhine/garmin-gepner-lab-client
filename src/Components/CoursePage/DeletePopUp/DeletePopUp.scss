@@ -1,0 +1,41 @@
+.DeletePopUp {
+    z-index: 999;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-1);
+    color: var(--text-color-2);
+    padding: var(--padding-l);
+    box-shadow: var(--dark-shadow-l);
+    gap: var(--padding-l);
+    width: 80%;
+    max-width: 300px;
+    border-radius: var(--radius-s);
+
+    .emphasize {
+        font-weight: bold;
+        color: var(--error-color);
+    }
+
+    .btn-wraper {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+
+        .btn {
+            width: 40%;
+        }
+
+        .del-btn {
+            color: var(--text-color-2);
+            font-weight: bold;
+            background-color: var(--error-color);
+        }
+    }
+}

@@ -48,6 +48,9 @@ a {
 }
 
 .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: none;
     color: var(--link-color-1);
     width: fit-content;
@@ -60,4 +63,22 @@ a {
     &:active {
         box-shadow: var(--dark-shadow-s);
     }
+}
+
+.delete-btn {
+    gap: var(--padding-s);
+    color: var(--error-color);
+    font-weight: bold;
+    border: solid 3px var(--error-color);
+}
+
+.dark {
+    z-index: 998;
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
 }

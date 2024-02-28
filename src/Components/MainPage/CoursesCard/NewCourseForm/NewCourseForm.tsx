@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { CourseModel } from "../../../../Models/course-modal";
 import coursesService from "../../../../Services/courses-service";
 import "./NewCourseForm.scss";

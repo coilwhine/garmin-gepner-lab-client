@@ -5,23 +5,22 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: var(--padding-s);
+    padding: var(--padding-m);
     color: var(--text-color-2);
     background-color: var(--color-1);
 
     .heading {
+        padding: var(--padding-m);
+
         h1 {
-            position: relative;
-            right: 38px;
-            top: 8px;
             font-size: 1.5em;
             color: var(--color-2);
         }
 
-        h2 {
+        span {
             position: relative;
-            left: 38px;
-            font-size: 2;
+            left: 20px;
+            font-size: 2em;
         }
     }
 

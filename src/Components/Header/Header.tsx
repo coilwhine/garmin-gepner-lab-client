@@ -17,7 +17,6 @@ function Header(): JSX.Element {
         <div className="Header">
             <div className="heading">
                 <h1>Gepner Lab</h1>
-                <h2>Garmin</h2>
             </div>
             <nav className="right-nav">
                 <NavLink className="privacy-icon nav-link" to={"/privacys-statement"}>
