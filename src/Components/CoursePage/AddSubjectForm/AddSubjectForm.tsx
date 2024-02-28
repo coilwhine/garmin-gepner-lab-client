@@ -1,12 +1,28 @@
 import { useForm } from "react-hook-form";
 import "./AddSubjectForm.scss";
 import { SubjectModel } from "../../../Models/subject-modal";
+import subjectsService from "../../../Services/subjects-service";
+import { CourseModel } from "../../../Models/course-modal";
 
-function AddSubjectForm(): JSX.Element {
+type ownProps = {
+    courseData: CourseModel,
+    setSubjects: Function
+}
+
+function AddSubjectForm(props: ownProps): JSX.Element {
     const { handleSubmit, register } = useForm<SubjectModel>();
 
     function onSubmit(data: SubjectModel) {
-        console.log(data);
+        subjectsService.addNewSubject({
+            id: data.id,
+            associatedClock: data.associatedClock,
+            courseId: props.courseData.id
+        }).then(() => {
+            subjectsService.getAllSubjectsByCourse(props.courseData.id)
+                .then((res) => {
+                    props.setSubjects(res)
+                })
+        })
     }
 
     return (
@@ -37,7 +53,7 @@ function AddSubjectForm(): JSX.Element {
             </div>
 
             <div className="btns-wrap">
-                <button className="btn sub-btn" type="submit" >Add</button>
+                <button className="btn sub-btn" type="submit" disabled={!props.courseData}>Add</button>
                 <button className="btn res-btn" type="reset">Reset</button>
             </div>
         </form>

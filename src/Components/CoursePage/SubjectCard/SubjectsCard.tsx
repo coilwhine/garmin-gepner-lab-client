@@ -1,31 +1,27 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import "./SubjectsCard.scss";
-import SubjectRow from "./SubjectRow/SubjectRow";
+import { CourseModel } from "../../../Models/course-modal";
 import { SubjectModel } from "../../../Models/subject-modal";
+import SubjectRow from "./SubjectRow/SubjectRow";
 
-function SubjectsCard(): JSX.Element {
-    const [subjectsData, setSubjectsData] = useState<SubjectModel[] | null>(null)
+type ownProps = {
+    courseData: CourseModel,
+    subjects: SubjectModel[]
+}
 
-    // useEffect(() => {
-
-    //     coursesService.getAllCourses()
-    //         .then((res) => {
-    //             setCoursesData(res);
-    //         });
-
-    // }, []);
+function SubjectsCard(props: ownProps): JSX.Element {
 
     return (
         <div className="SubjectsCard">
             <h2>Subjects Cards</h2>
             <div className="subjectHeaderRow">
-                <span className="user-id">{"User ID"}</span>
+                <span className="user-id">{"Subject ID"}</span>
                 <span className="clock-date">{"Associated Clock"}</span>
             </div>
 
-            {/* {coursesData ? coursesData.map((data) => {
-                return <SubjectRow key={data.id} courseData={data} />
-            }) : <div>No Subject Loaded...</div>} */}
+            {props.subjects ? props.subjects.map((data) => {
+                return <SubjectRow key={data.key} subjectData={data} />
+            }) : <div>No Subject Loaded...</div>}
 
         </div>
     );

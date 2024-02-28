@@ -2,5 +2,6 @@
 export type SubjectModel = {
     key?: string,
     id: string,
-    associatedClock: string
+    associatedClock: string,
+    courseId: string
 }

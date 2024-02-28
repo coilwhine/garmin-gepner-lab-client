@@ -38,12 +38,41 @@ class SubjectsService {
                     const subject = childSnapshot.val();
                     if (subject.id === id) {
                         subject.key = childSnapshot.key;
-                        console.log(subject);
                         return subject;
                     }
                 });
 
                 return null;
+
+            } else {
+                console.log("No subjectes found in the database.");
+                return null;
+            }
+
+        } catch (error) {
+            console.error("Error getting subject by id:", error);
+            throw error;
+        }
+    }
+
+    async getAllSubjectsByCourse(courseId: string): Promise<SubjectModel[] | null> {
+
+        const subjectsRef = ref(firebaseDB, 'subjects');
+
+        try {
+            const subjectsSnapshot = await get(subjectsRef);
+
+            if (subjectsSnapshot.exists()) {
+                const subjectsArray: SubjectModel[] = [];
+                subjectsSnapshot.forEach((childSnapshot: DataSnapshot) => {
+                    const subject = childSnapshot.val();
+                    if (subject.courseId === courseId) {
+                        subject.key = childSnapshot.key;
+                        subjectsArray.push(subject);
+                    }
+                });
+
+                return subjectsArray;
 
             } else {
                 console.log("No subjectes found in the database.");
@@ -114,7 +143,8 @@ class SubjectsService {
         try {
             await set(newSubjectRef, {
                 id: newSubjectData.id,
-                startDate: newSubjectData.associatedClock
+                associatedClock: newSubjectData.associatedClock,
+                courseId: newSubjectData.courseId
             });
 
             console.log("Data added successfully with key:", newSubjectRef.key);
