@@ -49,9 +49,11 @@ class CoursesService {
                     const course = childSnapshot.val();
 
                     course.key = childSnapshot.key;
+                    course.startDate = new Date(course.startDate);
+
                     coursesList.push(course);
                 });
-
+                coursesList.sort((a: any, b: any) => b.startDate - a.startDate);
                 return coursesList
 
             } else {
