@@ -5,7 +5,6 @@ import coursesService from "../../../Services/courses-service";
 import { useEffect, useState } from "react";
 import { CourseModel } from "../../../Models/course-modal";
 import NewCourseForm from "./NewCourseForm/NewCourseForm";
-import { dateFormater } from "../../../Utils/dateFormater";
 
 
 function CoursesCard(): JSX.Element {
@@ -34,10 +33,15 @@ function CoursesCard(): JSX.Element {
         <div className="CoursesCard card">
             <h2>Courses</h2>
 
-            <CourseRow name={"Id"} count={"Subjects"} start={"Start"} end={"End"} header={true} />
+            <div className={"courseHeaderRow"}>
+                <span className="course-name">{"Name"}</span>
+                <span className="subjects-count">{"Subjects"}</span>
+                <span className="start-date">{"Start"}</span>
+                <span className="end-date">{"End"}</span>
+            </div>
 
             {coursesData ? coursesData.map((data) => {
-                return <CourseRow key={data.id} name={data.id} count={"22"} start={dateFormater(data.startDate)} end={dateFormater(data.endDate)} header={false} />
+                return <CourseRow key={data.id} courseData={data} />
             }) : <div>No Courses Loaded...</div>}
 
             <button className="add-cours-btn btn"

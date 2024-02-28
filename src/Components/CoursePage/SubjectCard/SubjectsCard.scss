@@ -1,25 +1,22 @@
-.CoursesCard {
+.SubjectsCard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
     position: relative;
     gap: var(--padding-m);
+    box-sizing: content-box;
+    padding: var(--padding-l);
+    border-radius: var(--radius-m);
+    box-shadow: var(--light-shadow-m);
+    background-color: var(--color-2);
 
-    .add-cours-btn {
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        top: 10px;
-        left: 10px;
-        width: 30px;
-        height: 30px;
-        font-size: 3em;
-        padding: var(--padding-s);
-    }
-
-    .courseHeaderRow {
+    .subjectHeaderRow {
         position: relative;
         top: 0;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         align-items: center;
         justify-content: space-between;
         text-align: center;

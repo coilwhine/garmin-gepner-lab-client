@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./Header.scss";
 import { MdPrivacyTip } from "react-icons/md";
 import authService from "../../Services/auth-service";
 import { IoMdLogOut } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { User } from "firebase/auth";
+import { HiMiniHome } from "react-icons/hi2";
+
 
 
 
@@ -14,12 +16,21 @@ function Header(): JSX.Element {
     return (
         <div className="Header">
             <h1><span>Gepner Lab</span> - Garmin</h1>
-            <Link className="privacy-icon" to={"/privacys-statement"}>
-                <MdPrivacyTip />
-            </Link>
-            {userData && <button className="logout-btn" onClick={() => authService.logout()}>
-                <IoMdLogOut />
-            </button>}
+            <nav className="right-nav">
+                <NavLink className="privacy-icon nav-link" to={"/privacys-statement"}>
+                    <MdPrivacyTip />
+                </NavLink>
+
+                <NavLink className="privacy-icon nav-link" to={"/"}>
+                    <HiMiniHome />
+                </NavLink>
+            </nav>
+
+            <nav className="left-nav">
+                {userData && <button className="logout-btn nav-link" onClick={() => authService.logout()}>
+                    <IoMdLogOut />
+                </button>}
+            </nav>
         </div>
     );
 }

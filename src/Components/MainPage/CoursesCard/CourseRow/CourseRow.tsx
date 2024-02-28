@@ -1,21 +1,28 @@
+import { Link } from "react-router-dom";
+import { dateFormater } from "../../../../Utils/dateFormater";
 import "./CourseRow.scss";
 
 type ownProps = {
-    header: boolean,
-    name: string,
-    count: string,
-    start: string,
-    end: string
+    courseData: {
+        key?: string,
+        id: string,
+        startDate: string,
+        endDate: string,
+        subjects: string[] | string
+    }
 }
 
 function CourseRow(props: ownProps): JSX.Element {
+
     return (
-        <div className={props.header ? "CourseRow header" : "CourseRow row"}>
-            <span className="course-name">{props.name}</span>
-            <span className="subjects-count">{props.count}</span>
-            <span className="start-date">{props.start}</span>
-            <span className="end-date">{props.end}</span>
-        </div>
+        <Link to={`/course/${props.courseData.key}`} className={"CourseRow row"} >
+            <span className="course-name">{props.courseData.id}</span>
+            <span className="subjects-count">
+                {props.courseData.subjects ? props.courseData.subjects.length.toString() : "0"}
+            </span>
+            <span className="start-date">{dateFormater(props.courseData.startDate)}</span>
+            <span className="end-date">{dateFormater(props.courseData.endDate)}</span>
+        </Link>
     );
 }
 

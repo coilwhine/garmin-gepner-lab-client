@@ -81,7 +81,7 @@ function NewCourseForm(props: ownProps): JSX.Element {
             </div>
 
             <div className="btns-wrap">
-                <button className="btn sub-btn" type="submit" >Login</button>
+                <button className="btn sub-btn" type="submit" >Add</button>
                 <button className="btn res-btn" type="reset">Reset</button>
             </div>
         </ form>

@@ -10,6 +10,7 @@ import { firebaseAuth } from './firebase-config'
 import LoginPage from './Components/LoginPage/LoginPage'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, logout } from './App/authTokenSlice'
+import CoursePage from './Components/CoursePage/CoursePage'
 
 function App() {
   const userData = useSelector((state: { authData: User | null }) => state.authData);
@@ -29,6 +30,7 @@ function App() {
 
         <Route path="/" element={<PrivateRoute />}>
           <Route index element={<MainPage />} />
+          <Route path='/course/:key' element={<CoursePage />} />
           <Route path="/privacys-statement" element={<PrivacyStatementPage />} />
         </Route>
 

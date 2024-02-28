@@ -4,6 +4,27 @@ import { firebaseDB } from "../firebase-config";
 
 class CoursesService {
 
+    async getCourseByKey(key: string): Promise<CourseModel | null> {
+
+        const coursesRef = ref(firebaseDB, `courses/${key}`);
+
+        try {
+            const courseSnapshot = await get(coursesRef);
+
+            if (courseSnapshot.exists()) {
+                return courseSnapshot.val();
+
+            } else {
+                console.log("No courses found in the database.");
+                return null;
+            }
+
+        } catch (error) {
+            console.error("Error getting course by key:", error);
+            throw error;
+        }
+    }
+
     async getCourseById(id: string): Promise<CourseModel | null> {
 
         const coursesRef = ref(firebaseDB, 'courses');
@@ -86,7 +107,8 @@ class CoursesService {
             await set(newCourseRef, {
                 id: newCourseData.id,
                 startDate: newCourseData.startDate,
-                endDate: newCourseData.endDate
+                endDate: newCourseData.endDate,
+                subjects: []
             })
 
             console.log("Data added successfully with key:", newCourseRef.key);
