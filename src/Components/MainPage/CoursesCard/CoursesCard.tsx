@@ -13,14 +13,6 @@ function CoursesCard(): JSX.Element {
     const [coursesData, setCoursesData] = useState<CourseModel[] | null>(null)
     const [openNewCourseForm, setOpenNewCourseForm] = useState(false);
 
-    // async function addCourse() {
-    //     await coursesService.addNewCourse({ id: "92A", startDate: "11/11/11", endDate: "11/11/11" })
-    //     coursesService.getAllCourses()
-    //         .then((res) => {
-    //             setCoursesData(res);
-    //         });
-    // }
-
     useEffect(() => {
 
         coursesService.getAllCourses()
@@ -37,7 +29,7 @@ function CoursesCard(): JSX.Element {
             <CourseRow name={"Id"} count={"Subjects"} start={"Start"} end={"End"} header={true} />
 
             {coursesData?.map((data) => {
-                return <CourseRow key={data.id} name={data.id} count={data.id} start={dateFormater(data.startDate)} end={dateFormater(data.endDate)} header={false} />
+                return <CourseRow key={data.id} name={data.id} count={"22"} start={dateFormater(data.startDate)} end={dateFormater(data.endDate)} header={false} />
             })}
 
             <button className="add-cours-btn btn"

@@ -4,6 +4,8 @@ import coursesService from "../../../../Services/courses-service";
 import "./NewCourseForm.scss";
 import { useForm } from "react-hook-form";
 import { useOnClickOutside } from "../../../../Utils/onClickOutSideHook";
+import { BsCalendarDateFill } from "react-icons/bs";
+
 
 type ownProps = {
     setOpenNewCourseForm: Function,
@@ -51,7 +53,10 @@ function NewCourseForm(props: ownProps): JSX.Element {
                 </div>
 
                 <div className="input-wraper">
-                    <label htmlFor="start-date-input">Start Date</label>
+                    <label htmlFor="start-date-input">
+                        Start Date
+                        <BsCalendarDateFill />
+                    </label>
                     <input
                         id="start-date-input"
                         type="date"
@@ -61,7 +66,10 @@ function NewCourseForm(props: ownProps): JSX.Element {
                 </div>
 
                 <div className="input-wraper">
-                    <label htmlFor="end-date-input">End Date</label>
+                    <label htmlFor="end-date-input">
+                        End Date
+                        <BsCalendarDateFill />
+                    </label>
                     <input
                         id="end-date-input"
                         type="date"
@@ -71,6 +79,7 @@ function NewCourseForm(props: ownProps): JSX.Element {
                 </div>
 
             </div>
+
             <div className="btns-wrap">
                 <button className="btn sub-btn" type="submit" >Login</button>
                 <button className="btn res-btn" type="reset">Reset</button>
