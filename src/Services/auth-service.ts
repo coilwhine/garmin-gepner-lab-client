@@ -13,7 +13,7 @@ class AuthService {
         } catch (error) {
             console.error(error);
         }
-    }
+    };
 
     async logout() {
 
@@ -21,8 +21,8 @@ class AuthService {
             await signOut(firebaseAuth);
         } catch (error) {
             console.error(error);
-        }
-    }
+        };
+    };
 
     async signin(emailInpurt: string, passwordInput: string) {
 
@@ -36,8 +36,8 @@ class AuthService {
             console.error(error);
         }
 
-    }
-}
+    };
+};
 
 const authService = new AuthService();
 export default authService;

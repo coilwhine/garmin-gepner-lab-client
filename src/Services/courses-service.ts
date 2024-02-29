@@ -19,13 +19,13 @@ class CoursesService {
             } else {
                 console.log("No courses found in the database.");
                 return null;
-            }
+            };
 
         } catch (error) {
             console.error("Error getting course by key:", error);
             throw error;
-        }
-    }
+        };
+    };
 
     async getCourseById(id: string): Promise<CourseModel | null> {
 
@@ -42,7 +42,7 @@ class CoursesService {
                         course.key = childSnapshot.key;
                         console.log(course);
                         return course;
-                    }
+                    };
                 });
 
                 return null;
@@ -50,13 +50,13 @@ class CoursesService {
             } else {
                 console.log("No courses found in the database.");
                 return null;
-            }
+            };
 
         } catch (error) {
             console.error("Error getting course by id:", error);
             throw error;
-        }
-    }
+        };
+    };
 
     async getAllCourses(): Promise<CourseModel[] | null> {
 
@@ -87,8 +87,8 @@ class CoursesService {
         } catch (error) {
             console.error("Error getting courses:", error);
             throw error;
-        }
-    }
+        };
+    };
 
     async addNewCourse(newCourseData: CourseModel): Promise<void> {
         console.log("addNewCourse");
@@ -103,7 +103,7 @@ class CoursesService {
         if (idAlreadyExist && idAlreadyExist.length > 0) {
             console.log("Id all ready in use");
             return;
-        }
+        };
 
         const dataRef = ref(firebaseDB, 'courses/');
         const newCourseRef = push(dataRef);
@@ -113,7 +113,7 @@ class CoursesService {
                 startDate: newCourseData.startDate,
                 endDate: newCourseData.endDate,
                 subjects: []
-            })
+            });
 
             console.log("Data added successfully with key:", newCourseRef.key);
             return;
@@ -122,7 +122,7 @@ class CoursesService {
             console.error("Error adding data:", error);
             throw error;
         };
-    }
+    };
 
     async deleteCourseByKey(courseKey: string): Promise<void> {
         const dataRef = ref(firebaseDB, `courses/${courseKey}`);
@@ -136,9 +136,9 @@ class CoursesService {
         } catch (error) {
             console.error("Error deleting data: ", error);
         };
-    }
+    };
 
-}
+};
 
 const coursesService = new CoursesService();
 export default coursesService;

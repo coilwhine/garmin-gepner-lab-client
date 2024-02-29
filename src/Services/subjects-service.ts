@@ -18,13 +18,13 @@ class SubjectsService {
             } else {
                 console.log("No subjects found in the database.");
                 return null;
-            }
+            };
 
         } catch (error) {
             console.error("Error getting subject by key:", error);
             throw error;
-        }
-    }
+        };
+    };
 
     async getSubjectById(id: string): Promise<SubjectModel | null> {
 
@@ -41,21 +41,21 @@ class SubjectsService {
                     if (subject.id === id) {
                         subject.key = childSnapshot.key;
                         return subject;
-                    }
+                    };
                 });
 
                 return null;
 
             } else {
-                console.log("No subjectes found in the database.");
+                console.log("No subjects found in the database.");
                 return null;
-            }
+            };
 
         } catch (error) {
             console.error("Error getting subject by id:", error);
             throw error;
-        }
-    }
+        };
+    };
 
     async getAllSubjectsByCourseId(courseId: string): Promise<SubjectModel[] | null> {
 
@@ -72,26 +72,26 @@ class SubjectsService {
                     if (subject.courseId === courseId) {
                         subject.key = childSnapshot.key;
                         subjectsArray.push(subject);
-                    }
+                    };
                 });
 
                 return subjectsArray;
 
             } else {
-                console.log("No subjectes found in the database.");
+                console.log("No subjects found in the database.");
                 return null;
-            }
+            };
 
         } catch (error) {
             console.error("Error getting subject by id:", error);
             throw error;
-        }
-    }
+        };
+    };
 
-    async getAllsubjects(): Promise<SubjectModel[] | null> {
+    async getAllSubjects(): Promise<SubjectModel[] | null> {
 
         const subjectsRef = ref(firebaseDB, 'subjects');
-        console.log("getAllsubjects");
+        console.log("getAllSubjects");
 
         try {
             const subjectsSnapshot = await get(subjectsRef);
@@ -110,10 +110,9 @@ class SubjectsService {
 
                     if (a.id < b.id) {
                         return -1;
-                    }
-                    if (a.id > b.id) {
+                    } else if (a.id > b.id) {
                         return 1;
-                    }
+                    };
                 });
 
                 return subjectsList;
@@ -125,12 +124,12 @@ class SubjectsService {
         } catch (error) {
             console.error("Error getting subjects:", error);
             throw error;
-        }
-    }
+        };
+    };
 
     async addNewSubject(newSubjectData: SubjectModel): Promise<void> {
 
-        const corentSubjects = await this.getAllsubjects();
+        const corentSubjects = await this.getAllSubjects();
         console.log("addNewSubject");
 
         let idAlreadyExist = corentSubjects?.filter(subject => {
@@ -140,7 +139,7 @@ class SubjectsService {
         if (idAlreadyExist && idAlreadyExist.length > 0) {
             console.log("Id all ready in use");
             return;
-        }
+        };
 
         const dataRef = ref(firebaseDB, 'subjects/');
         const newSubjectRef = push(dataRef);
@@ -158,7 +157,7 @@ class SubjectsService {
             console.error("Error adding data:", error);
             throw error;
         };
-    }
+    };
 
     async deleteSubjectByKey(subjectKey: string): Promise<void> {
         const dataRef = ref(firebaseDB, `subjects/${subjectKey}`);
@@ -172,9 +171,9 @@ class SubjectsService {
         } catch (error) {
             console.error("Error deleting data: ", error);
         };
-    }
+    };
 
-}
+};
 
 const subjectsService = new SubjectsService();
 export default subjectsService;
