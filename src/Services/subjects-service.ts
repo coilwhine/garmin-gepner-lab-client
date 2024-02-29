@@ -127,7 +127,7 @@ class SubjectsService {
         };
     };
 
-    async addNewSubject(newSubjectData: SubjectModel): Promise<void> {
+    async addNewSubject(newSubjectData: SubjectModel): Promise<string> {
 
         const corentSubjects = await this.getAllSubjects();
         console.log("addNewSubject");
@@ -151,7 +151,7 @@ class SubjectsService {
             });
 
             console.log("Data added successfully with key:", newSubjectRef.key);
-            return;
+            return newSubjectRef.key;
 
         } catch (error) {
             console.error("Error adding data:", error);

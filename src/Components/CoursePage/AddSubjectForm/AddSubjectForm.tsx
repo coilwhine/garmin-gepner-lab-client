@@ -12,17 +12,17 @@ type ownProps = {
 function AddSubjectForm(props: ownProps): JSX.Element {
     const { handleSubmit, register } = useForm<SubjectModel>();
 
-    function onSubmit(data: SubjectModel) {
-        subjectsService.addNewSubject({
+    async function onSubmit(data: SubjectModel) {
+        const res = await subjectsService.addNewSubject({
             id: data.id,
             associatedWatch: data.associatedWatch,
             courseId: props.courseData.id
-        }).then(() => {
-            subjectsService.getAllSubjectsByCourseId(props.courseData.id)
-                .then((res) => {
-                    props.setSubjects(res)
-                });
-        });
+        })
+
+        if (res) {
+            const allSubjects = await subjectsService.getAllSubjectsByCourseId(props.courseData.id);
+            props.setSubjects(allSubjects);
+        }
     }
 
     return (

@@ -97,7 +97,7 @@ class WatchesService {
         };
     };
 
-    async addNewWatch(newWatchData: WatchModel): Promise<void> {
+    async addNewWatch(newWatchData: WatchModel): Promise<string> {
 
         const corentWatches = await this.getAllWatches();
         console.log("addNewWatch");
@@ -120,7 +120,7 @@ class WatchesService {
             });
 
             console.log("Data added successfully with key:", newWatchRef.key);
-            return;
+            return newWatchRef.key;
 
         } catch (error) {
             console.error("Error adding data:", error);

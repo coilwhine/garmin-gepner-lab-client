@@ -16,11 +16,12 @@ function NewCourseForm(props: ownProps): JSX.Element {
 
     async function onSubmit(data: CourseModel) {
         try {
-            await coursesService.addNewCourse(data);
-            coursesService.getAllCourses()
-                .then((res) => {
-                    props.setCoursesData(res);
-                });
+            const res = await coursesService.addNewCourse(data);
+
+            if (res) {
+                const allCourses = await coursesService.getAllCourses()
+                props.setCoursesData(allCourses);
+            }
             props.setOpenNewCourseForm(false);
             return;
         } catch (error) {

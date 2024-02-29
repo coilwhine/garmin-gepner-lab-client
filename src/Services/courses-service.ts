@@ -90,7 +90,7 @@ class CoursesService {
         };
     };
 
-    async addNewCourse(newCourseData: CourseModel): Promise<void> {
+    async addNewCourse(newCourseData: CourseModel): Promise<string> {
         console.log("addNewCourse");
 
         const corentCourses = await this.getAllCourses();
@@ -116,7 +116,7 @@ class CoursesService {
             });
 
             console.log("Data added successfully with key:", newCourseRef.key);
-            return;
+            return newCourseRef.key;
 
         } catch (error) {
             console.error("Error adding data:", error);

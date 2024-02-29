@@ -14,11 +14,13 @@ function NewWatchForm(props: ownProps): JSX.Element {
 
     async function onSubmit(data: WatchModel) {
         try {
-            await watchesService.addNewWatch(data);
-            watchesService.getAllWatches()
-                .then((res) => {
-                    props.setWatchesData(res);
-                });
+            const res = await watchesService.addNewWatch(data);
+
+            if (res) {
+                const allWatches = await watchesService.getAllWatches();
+                props.setWatchesData(allWatches);
+            }
+
             return;
         } catch (error) {
             console.log(error);
