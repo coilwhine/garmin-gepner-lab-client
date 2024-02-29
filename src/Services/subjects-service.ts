@@ -55,7 +55,7 @@ class SubjectsService {
         }
     }
 
-    async getAllSubjectsByCourse(courseId: string): Promise<SubjectModel[] | null> {
+    async getAllSubjectsByCourseId(courseId: string): Promise<SubjectModel[] | null> {
 
         const subjectsRef = ref(firebaseDB, 'subjects');
 
@@ -127,7 +127,6 @@ class SubjectsService {
     async addNewSubject(newSubjectData: SubjectModel): Promise<void> {
 
         const corentSubjects = await this.getAllsubjects();
-        console.log(corentSubjects);
 
         let idAlreadyExist = corentSubjects?.filter(subject => {
             return subject.id === newSubjectData.id;

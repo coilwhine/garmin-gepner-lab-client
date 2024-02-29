@@ -18,7 +18,7 @@ function AddSubjectForm(props: ownProps): JSX.Element {
             associatedClock: data.associatedClock,
             courseId: props.courseData.id
         }).then(() => {
-            subjectsService.getAllSubjectsByCourse(props.courseData.id)
+            subjectsService.getAllSubjectsByCourseId(props.courseData.id)
                 .then((res) => {
                     props.setSubjects(res)
                 })

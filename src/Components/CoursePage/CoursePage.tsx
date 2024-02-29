@@ -15,11 +15,11 @@ function CoursePage(): JSX.Element {
     const [courseData, setCourseData] = useState<CourseModel | null>(null);
     const [subjects, setSubjects] = useState<SubjectModel[] | null>(null);
     const [openDeletePopUp, setOpenDeletePopUp] = useState<boolean>(false);
-    const [deleteData, setDeleteData] = useState<{ itemKey: string, dbTableName: string } | null>(null)
+    const [deleteData, setDeleteData] = useState<{ itemName: string, itemKey: string, dbTableName: string } | null>(null)
     const courseKey = useParams().key;
 
-    function deleteFunc(itemKey: string, dbTableName: string) {
-        setDeleteData({ itemKey, dbTableName })
+    function deleteFunc(itemName: string, itemKey: string, dbTableName: string) {
+        setDeleteData({ itemName, itemKey, dbTableName })
         setOpenDeletePopUp(true);
     }
 
@@ -32,7 +32,7 @@ function CoursePage(): JSX.Element {
 
     useEffect(() => {
         {
-            courseData && subjectsService.getAllSubjectsByCourse(courseData.id)
+            courseData && subjectsService.getAllSubjectsByCourseId(courseData.id)
                 .then((res) => {
                     setSubjects(res);
                 })
@@ -44,14 +44,14 @@ function CoursePage(): JSX.Element {
             <div className="CoursePage">
                 <h2>Course {courseData?.id}</h2>
                 <AddSubjectForm courseData={courseData} setSubjects={setSubjects} />
-                <SubjectCard courseData={courseData} subjects={subjects} />
-                <button className="delete-btn btn" onClick={(() => deleteFunc(courseData.key, "courses"))}>
+                <SubjectCard courseData={courseData} subjects={subjects} deleteFunc={deleteFunc} />
+                <button className="delete-btn btn" onClick={(() => deleteFunc(courseData.id, courseData.key, "courses"))}>
                     <IoTrashSharp />
                     Delete Course
                 </button>
             </div>
 
-            {openDeletePopUp && <DeletePopUp itemKey={courseKey} dbTableName={deleteData.dbTableName} setOpenDeletePopUp={setOpenDeletePopUp} />}
+            {openDeletePopUp && <DeletePopUp itemName={deleteData.itemName} itemKey={deleteData.itemKey} dbTableName={deleteData.dbTableName} setSubjects={setSubjects} setOpenDeletePopUp={setOpenDeletePopUp} courseData={courseData} />}
         </>
     );
 }

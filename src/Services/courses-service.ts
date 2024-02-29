@@ -12,7 +12,9 @@ class CoursesService {
             const courseSnapshot = await get(coursesRef);
 
             if (courseSnapshot.exists()) {
-                return courseSnapshot.val();
+                let course = courseSnapshot.val();
+                course.key = key;
+                return course;
 
             } else {
                 console.log("No courses found in the database.");

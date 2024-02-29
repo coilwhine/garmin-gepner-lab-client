@@ -13,4 +13,12 @@
     border-radius: var(--radius-m);
     box-shadow: var(--dark-shadow-s);
     font-size: 0.9em;
+
+    .delete-btn {
+        position: absolute;
+        left: -10px;
+        padding: var(--padding-s);
+        border-radius: var(--radius-xl);
+        border: solid 2px var(--error-color);
+    }
 }

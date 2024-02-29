@@ -18,7 +18,7 @@ function CourseRow(props: ownProps): JSX.Element {
     const [subjects, setSubjects] = useState<SubjectModel[] | null>(null)
 
     useEffect(() => {
-        subjectsService.getAllSubjectsByCourse(props.courseData.id)
+        subjectsService.getAllSubjectsByCourseId(props.courseData.id)
             .then((res: any) => {
                 setSubjects(res)
             });

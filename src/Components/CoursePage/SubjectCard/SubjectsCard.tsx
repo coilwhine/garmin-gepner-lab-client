@@ -5,7 +5,8 @@ import SubjectRow from "./SubjectRow/SubjectRow";
 
 type ownProps = {
     courseData: CourseModel,
-    subjects: SubjectModel[]
+    subjects: SubjectModel[],
+    deleteFunc: Function
 }
 
 function SubjectsCard(props: ownProps): JSX.Element {
@@ -19,7 +20,7 @@ function SubjectsCard(props: ownProps): JSX.Element {
             </div>
 
             {props.subjects ? props.subjects.map((data) => {
-                return <SubjectRow key={data.key} subjectData={data} />
+                return <SubjectRow key={data.key} subjectData={data} courseData={props.courseData} deleteFunc={props.deleteFunc} />
             }) : <div>No Subject Loaded...</div>}
 
         </div>

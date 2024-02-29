@@ -1,35 +1,34 @@
-import { Navigate, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import coursesService from "../../../Services/courses-service";
 import subjectsService from "../../../Services/subjects-service";
 import "./DeletePopUp.scss";
+import { CourseModel } from "../../../Models/course-modal";
 
 type ownProps = {
+    itemName: string,
     itemKey: string,
     dbTableName: string,
-    setOpenDeletePopUp: Function
+    setOpenDeletePopUp: Function,
+    setSubjects: Function,
+    courseData: CourseModel
 }
+
 function DeletePopUp(props: ownProps): JSX.Element {
     const navigate = useNavigate();
 
     async function deleteItem(itemKey: string, dbTableName: string) {
 
-        console.log(itemKey, " ", dbTableName);
-
 
         if (dbTableName === "courses") {
-
             await coursesService.deleteCourseByKey(itemKey)
-                .then(() => {
-                    props.setOpenDeletePopUp(false);
-                    navigate('/')
-                })
+            props.setOpenDeletePopUp(false);
+            navigate('/')
 
         } else if (dbTableName === "subjects") {
-
-            await subjectsService.deleteSubjectByKey(itemKey)
-                .then(() => {
-                    props.setOpenDeletePopUp(false);
-                })
+            await subjectsService.deleteSubjectByKey(itemKey);
+            const subjects = await subjectsService.getAllSubjectsByCourseId(props.courseData.id);
+            props.setSubjects(subjects);
+            props.setOpenDeletePopUp(false);
 
         } else {
             throw new Error("Cant finde this DB table");
@@ -42,7 +41,7 @@ function DeletePopUp(props: ownProps): JSX.Element {
                 <h3>Are You Shure?</h3>
 
                 <span>
-                    shuld I delete <span className="emphasize">{props.itemKey}</span> from <span className="emphasize">{props.dbTableName}</span>
+                    shuld I delete <span className="emphasize">{props.itemName}</span> from <span className="emphasize">{props.dbTableName}</span>
                 </span>
 
                 <div className="btn-wraper">
