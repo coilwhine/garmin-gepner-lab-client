@@ -1,5 +1,6 @@
 
 export type WatchModel = {
     key?: string,
-    id: string
+    id: string,
+    timeOfUpdate: Date | null
 }

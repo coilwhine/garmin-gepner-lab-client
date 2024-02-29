@@ -1,9 +1,14 @@
 .CourseRow {
     grid-template-columns: repeat(4, 1fr);
     cursor: pointer;
+    transition: 200ms;
+
+    &:hover {
+        top: 1px;
+    }
 
     &:active {
-        top: 1px;
+        top: 2px;
     }
 
     &.row .course-name {

@@ -8,7 +8,7 @@ import { BsCalendarDateFill } from "react-icons/bs";
 type ownProps = {
     setOpenNewCourseForm: Function,
     setCoursesData: Function
-}
+};
 
 function NewCourseForm(props: ownProps): JSX.Element {
 
@@ -25,13 +25,13 @@ function NewCourseForm(props: ownProps): JSX.Element {
             return;
         } catch (error) {
             console.log(error);
-        }
-    }
+        };
+    };
 
 
     return (
         <>
-            <form className="NewCourseForm" onSubmit={handleSubmit(onSubmit)}>
+            <form className="NewCourseForm popup-modal-form" onSubmit={handleSubmit(onSubmit)}>
                 <h2>Create New Course</h2>
 
                 <div className="inputs-wrap">

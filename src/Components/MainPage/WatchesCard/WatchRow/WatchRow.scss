@@ -1,0 +1,31 @@
+.WatchRow {
+    grid-template-columns: repeat(3, 1fr);
+
+    .update-indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: var(--radius-xl);
+        background-color: var(--unknown-color);
+
+        &.good {
+            background-color: var(--good-color);
+        }
+
+        &.mid {
+            background-color: var(--mid-color);
+        }
+
+        &.bad {
+            background-color: var(--bad-color);
+        }
+    }
+
+    .delete-btn {
+        position: absolute;
+        left: -10px;
+        padding: var(--padding-s);
+        border-radius: var(--radius-xl);
+        border: solid 2px var(--error-color);
+        box-shadow: var(--dark-shadow-s);
+    }
+}

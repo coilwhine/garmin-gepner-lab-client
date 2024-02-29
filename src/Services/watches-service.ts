@@ -115,7 +115,8 @@ class WatchesService {
         const newWatchRef = push(dataRef);
         try {
             await set(newWatchRef, {
-                id: newWatchData.id
+                id: newWatchData.id,
+                timeOfUpdate: null
             });
 
             console.log("Data added successfully with key:", newWatchRef.key);

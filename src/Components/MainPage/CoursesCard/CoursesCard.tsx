@@ -13,12 +13,10 @@ function CoursesCard(): JSX.Element {
     const [openNewCourseForm, setOpenNewCourseForm] = useState(false);
 
     useEffect(() => {
-
         coursesService.getAllCourses()
             .then((res) => {
                 setCoursesData(res);
             });
-
     }, []);
 
     useEffect(() => {
@@ -27,7 +25,7 @@ function CoursesCard(): JSX.Element {
         } else {
             document.body.style.overflow = 'auto';
         }
-    }, [openNewCourseForm])
+    }, [openNewCourseForm]);
 
     return (
         <div className="CoursesCard card">
@@ -44,7 +42,7 @@ function CoursesCard(): JSX.Element {
                 return <CourseRow key={data.id} courseData={data} />
             }) : <div>No Courses Loaded...</div>}
 
-            <button className="add-cours-btn btn"
+            <button className="add-card-btn btn"
                 onClick={() => setOpenNewCourseForm(true)}
             >
                 <FaPlusCircle />

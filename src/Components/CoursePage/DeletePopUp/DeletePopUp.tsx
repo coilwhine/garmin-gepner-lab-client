@@ -3,22 +3,22 @@ import coursesService from "../../../Services/courses-service";
 import subjectsService from "../../../Services/subjects-service";
 import "./DeletePopUp.scss";
 import { CourseModel } from "../../../Models/course-modal";
+import watchesService from "../../../Services/watches-service";
 
 type ownProps = {
     itemName: string,
     itemKey: string,
     dbTableName: string,
     setOpenDeletePopUp: Function,
-    setSubjects: Function,
-    courseData: CourseModel
+    setWatchesData?: Function,
+    setSubjects?: Function,
+    courseData?: CourseModel
 }
 
 function DeletePopUp(props: ownProps): JSX.Element {
     const navigate = useNavigate();
 
     async function deleteItem(itemKey: string, dbTableName: string) {
-
-
         if (dbTableName === "courses") {
             await coursesService.deleteCourseByKey(itemKey)
             props.setOpenDeletePopUp(false);
@@ -28,6 +28,12 @@ function DeletePopUp(props: ownProps): JSX.Element {
             await subjectsService.deleteSubjectByKey(itemKey);
             const subjects = await subjectsService.getAllSubjectsByCourseId(props.courseData.id);
             props.setSubjects(subjects);
+            props.setOpenDeletePopUp(false);
+
+        } else if (dbTableName === "watches") {
+            await watchesService.deleteWatchByKey(itemKey);
+            const watches = await watchesService.getAllWatches();
+            props.setWatchesData(watches);
             props.setOpenDeletePopUp(false);
 
         } else {
