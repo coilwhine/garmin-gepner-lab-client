@@ -8,7 +8,7 @@ function MainPage(): JSX.Element {
 
 
     return (
-        <div className="MainPage">
+        <div className="MainPage page">
             <CoursesCard />
         </div>
     );

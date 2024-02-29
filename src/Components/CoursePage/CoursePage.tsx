@@ -41,7 +41,7 @@ function CoursePage(): JSX.Element {
 
     return (
         <>
-            <div className="CoursePage">
+            <div className="CoursePage page">
                 <h2>Course {courseData?.id}</h2>
                 <AddSubjectForm courseData={courseData} setSubjects={setSubjects} />
                 <SubjectCard courseData={courseData} subjects={subjects} deleteFunc={deleteFunc} />

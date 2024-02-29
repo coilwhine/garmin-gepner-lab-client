@@ -12,7 +12,7 @@ type ownProps = {
 function SubjectRow(props: ownProps): JSX.Element {
 
     return (
-        <div className="SubjectRow">
+        <div className="SubjectRow row">
             <span>{props.subjectData.id}</span>
             <span>{props.subjectData.associatedWatch}</span>
 

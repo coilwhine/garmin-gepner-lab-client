@@ -1,0 +1,69 @@
+.App {
+
+
+    .page {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--padding-m);
+
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        position: relative;
+        gap: var(--padding-m);
+        box-sizing: content-box;
+        padding: var(--padding-l);
+        border-radius: var(--radius-m);
+        box-shadow: var(--light-shadow-m);
+        background-color: var(--color-2);
+
+
+        h2 {
+            margin-bottom: var(--padding-m);
+        }
+    }
+
+    .row {
+        position: relative;
+        top: 0;
+        display: grid;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        gap: var(--padding-l);
+        padding: var(--padding-m);
+        background-color: var(--text-color-2);
+        width: 90%;
+        border-radius: var(--radius-m);
+        box-shadow: var(--dark-shadow-s);
+        font-size: 0.9em;
+        color: var(--text-color-1);
+    }
+
+    .header-row {
+        position: relative;
+        top: 0;
+        display: grid;
+        align-items: center;
+        justify-content: space-between;
+        text-align: center;
+        gap: var(--padding-l);
+        padding: var(--padding-m);
+        background-color: var(--text-color-2);
+        width: 90%;
+        border-radius: var(--radius-m);
+        box-shadow: var(--dark-shadow-s);
+        font-size: 0.9em;
+        font-weight: bold;
+    }
+
+
+}

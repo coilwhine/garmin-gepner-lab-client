@@ -12,9 +12,9 @@ type ownProps = {
 function SubjectsCard(props: ownProps): JSX.Element {
 
     return (
-        <div className="SubjectsCard">
+        <div className="SubjectsCard card">
             <h2>Subjects Cards</h2>
-            <div className="subjectHeaderRow">
+            <div className="subjectHeaderRow header-row row">
                 <span className="user-id">{"Subject ID"}</span>
                 <span className="Watch-date">{"Associated Watch"}</span>
             </div>

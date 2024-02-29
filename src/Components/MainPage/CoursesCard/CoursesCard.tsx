@@ -33,7 +33,7 @@ function CoursesCard(): JSX.Element {
         <div className="CoursesCard card">
             <h2>Courses</h2>
 
-            <div className={"courseHeaderRow"}>
+            <div className={"courseHeaderRow header-row row"}>
                 <span className="course-name">{"Name"}</span>
                 <span className="subjects-count">{"Subjects"}</span>
                 <span className="start-date">{"Start"}</span>
