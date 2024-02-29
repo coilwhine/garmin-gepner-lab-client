@@ -7,6 +7,7 @@ class SubjectsService {
     async getSubjectByKey(key: string): Promise<SubjectModel | null> {
 
         const subjectsRef = ref(firebaseDB, `subjects/${key}`);
+        console.log("getSubjectByKey");
 
         try {
             const subjectSnapshot = await get(subjectsRef);
@@ -28,6 +29,7 @@ class SubjectsService {
     async getSubjectById(id: string): Promise<SubjectModel | null> {
 
         const subjectsRef = ref(firebaseDB, 'subjects');
+        console.log("getSubjectById");
 
         try {
             const subjectsSnapshot = await get(subjectsRef);
@@ -58,6 +60,7 @@ class SubjectsService {
     async getAllSubjectsByCourseId(courseId: string): Promise<SubjectModel[] | null> {
 
         const subjectsRef = ref(firebaseDB, 'subjects');
+        console.log("getAllSubjectsByCourseId");
 
         try {
             const subjectsSnapshot = await get(subjectsRef);
@@ -88,6 +91,7 @@ class SubjectsService {
     async getAllsubjects(): Promise<SubjectModel[] | null> {
 
         const subjectsRef = ref(firebaseDB, 'subjects');
+        console.log("getAllsubjects");
 
         try {
             const subjectsSnapshot = await get(subjectsRef);
@@ -127,6 +131,7 @@ class SubjectsService {
     async addNewSubject(newSubjectData: SubjectModel): Promise<void> {
 
         const corentSubjects = await this.getAllsubjects();
+        console.log("addNewSubject");
 
         let idAlreadyExist = corentSubjects?.filter(subject => {
             return subject.id === newSubjectData.id;
@@ -142,7 +147,7 @@ class SubjectsService {
         try {
             await set(newSubjectRef, {
                 id: newSubjectData.id,
-                associatedClock: newSubjectData.associatedClock,
+                associatedClock: newSubjectData.associatedWatch,
                 courseId: newSubjectData.courseId
             });
 
@@ -157,6 +162,7 @@ class SubjectsService {
 
     async deleteSubjectByKey(subjectKey: string): Promise<void> {
         const dataRef = ref(firebaseDB, `subjects/${subjectKey}`);
+        console.log("deleteSubjectByKey");
 
         try {
             await remove(dataRef);

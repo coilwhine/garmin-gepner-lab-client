@@ -38,10 +38,10 @@ function DeletePopUp(props: ownProps): JSX.Element {
     return (
         <>
             <div className="DeletePopUp">
-                <h3>Are You Shure?</h3>
+                <h3>Are You Sure?</h3>
 
                 <span>
-                    shuld I delete <span className="emphasize">{props.itemName}</span> from <span className="emphasize">{props.dbTableName}</span>
+                    Should I delete <span className="emphasize">{props.itemName}</span> from <span className="emphasize">{props.dbTableName}</span>
                 </span>
 
                 <div className="btn-wraper">

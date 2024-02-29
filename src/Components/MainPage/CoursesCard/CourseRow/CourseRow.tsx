@@ -22,7 +22,7 @@ function CourseRow(props: ownProps): JSX.Element {
             .then((res: any) => {
                 setSubjects(res)
             });
-    })
+    }, [])
 
     return (
         <Link to={`/course/${props.courseData.key}`} className={"CourseRow row"} >

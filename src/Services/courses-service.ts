@@ -10,7 +10,7 @@ class CoursesService {
 
         try {
             const courseSnapshot = await get(coursesRef);
-
+            console.log("getCourseByKey");
             if (courseSnapshot.exists()) {
                 let course = courseSnapshot.val();
                 course.key = key;
@@ -30,7 +30,7 @@ class CoursesService {
     async getCourseById(id: string): Promise<CourseModel | null> {
 
         const coursesRef = ref(firebaseDB, 'courses');
-
+        console.log("getCourseById");
         try {
             const usersSnapshot = await get(coursesRef);
 
@@ -61,6 +61,7 @@ class CoursesService {
     async getAllCourses(): Promise<CourseModel[] | null> {
 
         const coursesRef = ref(firebaseDB, 'courses');
+        console.log("getAllCourses");
 
         try {
             const coursesSnapshot = await get(coursesRef);
@@ -90,6 +91,7 @@ class CoursesService {
     }
 
     async addNewCourse(newCourseData: CourseModel): Promise<void> {
+        console.log("addNewCourse");
 
         const corentCourses = await this.getAllCourses();
         console.log(corentCourses);
@@ -124,6 +126,7 @@ class CoursesService {
 
     async deleteCourseByKey(courseKey: string): Promise<void> {
         const dataRef = ref(firebaseDB, `courses/${courseKey}`);
+        console.log("deleteCourseByKey");
 
         try {
             await remove(dataRef);

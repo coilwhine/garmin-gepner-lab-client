@@ -16,7 +16,7 @@ function SubjectsCard(props: ownProps): JSX.Element {
             <h2>Subjects Cards</h2>
             <div className="subjectHeaderRow">
                 <span className="user-id">{"Subject ID"}</span>
-                <span className="clock-date">{"Associated Clock"}</span>
+                <span className="Watch-date">{"Associated Watch"}</span>
             </div>
 
             {props.subjects ? props.subjects.map((data) => {

@@ -27,7 +27,7 @@ function CoursePage(): JSX.Element {
         coursesService.getCourseByKey(courseKey)
             .then((res) => {
                 setCourseData(res);
-            })
+            });
     }, [])
 
     useEffect(() => {

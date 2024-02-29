@@ -15,14 +15,14 @@ function AddSubjectForm(props: ownProps): JSX.Element {
     function onSubmit(data: SubjectModel) {
         subjectsService.addNewSubject({
             id: data.id,
-            associatedClock: data.associatedClock,
+            associatedWatch: data.associatedWatch,
             courseId: props.courseData.id
         }).then(() => {
             subjectsService.getAllSubjectsByCourseId(props.courseData.id)
                 .then((res) => {
                     props.setSubjects(res)
-                })
-        })
+                });
+        });
     }
 
     return (
@@ -40,14 +40,14 @@ function AddSubjectForm(props: ownProps): JSX.Element {
                 </div>
 
                 <div className="input-wraper">
-                    <label htmlFor="associatedClock-input">
-                        Clock
+                    <label htmlFor="associatedWatch-input">
+                        Watch
                     </label>
                     <input
-                        id="associatedClock-input"
+                        id="associatedWatch-input"
                         type="text"
-                        placeholder="associated clock id"
-                        {...register("associatedClock", { required: true })}
+                        placeholder="associated watch id"
+                        {...register("associatedWatch", { required: true })}
                     />
                 </div>
             </div>
