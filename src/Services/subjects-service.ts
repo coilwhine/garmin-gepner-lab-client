@@ -147,7 +147,7 @@ class SubjectsService {
         try {
             await set(newSubjectRef, {
                 id: newSubjectData.id,
-                associatedClock: newSubjectData.associatedWatch,
+                associatedWatch: newSubjectData.associatedWatch,
                 courseId: newSubjectData.courseId
             });
 

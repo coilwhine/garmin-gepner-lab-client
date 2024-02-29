@@ -14,9 +14,9 @@ function SubjectRow(props: ownProps): JSX.Element {
     return (
         <div className="SubjectRow">
             <span>{props.subjectData.id}</span>
-            <span>{props.subjectData.associatedClock}</span>
+            <span>{props.subjectData.associatedWatch}</span>
 
-            <button className="delete-btn btn" onClick={(() => props.deleteFunc(props.subjectData.id, props.subjectData.key, "subjects"))}>
+            <button className="btn delete-btn" onClick={(() => props.deleteFunc(props.subjectData.id, props.subjectData.key, "subjects"))}>
                 <IoTrashSharp />
             </button>
 
