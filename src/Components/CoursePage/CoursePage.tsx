@@ -3,7 +3,7 @@ import "./CoursePage.scss";
 import { useParams } from "react-router-dom";
 import coursesService from "../../Services/courses-service";
 import { CourseModel } from "../../Models/course-modal";
-import AddSubjectForm from "./AddSubjectForm/AddSubjectForm";
+import AddSubjectForm from "./NewSubjectForm/NewSubjectForm";
 import SubjectCard from "./SubjectCard/SubjectsCard";
 import subjectsService from "../../Services/subjects-service";
 import { SubjectModel } from "../../Models/subject-modal";

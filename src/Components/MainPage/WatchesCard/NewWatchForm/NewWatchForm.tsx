@@ -30,7 +30,7 @@ function NewWatchForm(props: ownProps): JSX.Element {
 
     return (
         <>
-            <form className="NewWatchForm popup-modal-form" onSubmit={handleSubmit(onSubmit)}>
+            <form className="NewWatchForm modal-form popup-modal-form" onSubmit={handleSubmit(onSubmit)}>
                 <h2>Create New Watch</h2>
                 <div className="inputs-wrap">
                     <div className="input-wraper">

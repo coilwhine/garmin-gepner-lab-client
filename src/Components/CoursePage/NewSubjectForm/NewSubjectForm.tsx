@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import "./AddSubjectForm.scss";
+import "./NewSubjectForm.scss";
 import { SubjectModel } from "../../../Models/subject-modal";
 import subjectsService from "../../../Services/subjects-service";
 import { CourseModel } from "../../../Models/course-modal";
@@ -32,7 +32,8 @@ function AddSubjectForm(props: ownProps): JSX.Element {
     };
 
     return (
-        <form className="AddSubjectForm" onSubmit={handleSubmit(onSubmit)}>
+        <form className="NewSubjectForm modal-form" onSubmit={handleSubmit(onSubmit)}>
+            <h2>Create New Subject</h2>
             <div className="inputs-wrap">
 
                 <div className="input-wraper">

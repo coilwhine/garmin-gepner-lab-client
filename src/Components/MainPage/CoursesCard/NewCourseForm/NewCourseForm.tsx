@@ -32,7 +32,7 @@ function NewCourseForm(props: ownProps): JSX.Element {
 
     return (
         <>
-            <form className="NewCourseForm popup-modal-form" onSubmit={handleSubmit(onSubmit)}>
+            <form className="NewCourseForm modal-form popup-modal-form" onSubmit={handleSubmit(onSubmit)}>
                 <h2>Create New Course</h2>
 
                 <div className="inputs-wrap">
