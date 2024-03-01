@@ -9,11 +9,14 @@ import subjectsService from "../../Services/subjects-service";
 import { SubjectModel } from "../../Models/subject-modal";
 import { IoTrashSharp } from "react-icons/io5";
 import DeletePopUp from "./DeletePopUp/DeletePopUp";
+import watchesService from "../../Services/watches-service";
+import { WatchModel } from "../../Models/watch-modal";
 
 
 function CoursePage(): JSX.Element {
     const [courseData, setCourseData] = useState<CourseModel | null>(null);
     const [subjects, setSubjects] = useState<SubjectModel[] | null>(null);
+    const [allWatches, setAllWatches] = useState<WatchModel[] | null>(null)
     const [openDeletePopUp, setOpenDeletePopUp] = useState<boolean>(false);
     const [deleteData, setDeleteData] = useState<{ itemName: string, itemKey: string, dbTableName: string } | null>(null)
     const courseKey = useParams().key;
@@ -28,7 +31,12 @@ function CoursePage(): JSX.Element {
             .then((res) => {
                 setCourseData(res);
             });
-    }, [])
+
+        watchesService.getAllWatches()
+            .then((res) => {
+                setAllWatches(res);
+            });
+    }, []);
 
     useEffect(() => {
         {
@@ -43,7 +51,7 @@ function CoursePage(): JSX.Element {
         <>
             <div className="CoursePage page">
                 <h2>Course {courseData?.id}</h2>
-                <AddSubjectForm courseData={courseData} setSubjects={setSubjects} />
+                <AddSubjectForm courseData={courseData} setSubjects={setSubjects} allWatches={allWatches} setAllWatches={setAllWatches} />
                 <SubjectCard courseData={courseData} subjects={subjects} deleteFunc={deleteFunc} />
                 <button className="delete-btn btn" onClick={(() => deleteFunc(courseData.id, courseData.key, "courses"))}>
                     <IoTrashSharp />

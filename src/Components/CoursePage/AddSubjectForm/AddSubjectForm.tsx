@@ -3,10 +3,14 @@ import "./AddSubjectForm.scss";
 import { SubjectModel } from "../../../Models/subject-modal";
 import subjectsService from "../../../Services/subjects-service";
 import { CourseModel } from "../../../Models/course-modal";
+import { WatchModel } from "../../../Models/watch-modal";
+import watchesService from "../../../Services/watches-service";
 
 type ownProps = {
     courseData: CourseModel,
-    setSubjects: Function
+    setSubjects: Function,
+    allWatches: WatchModel[]
+    setAllWatches: Function
 }
 
 function AddSubjectForm(props: ownProps): JSX.Element {
@@ -17,13 +21,15 @@ function AddSubjectForm(props: ownProps): JSX.Element {
             id: data.id,
             associatedWatch: data.associatedWatch,
             courseId: props.courseData.id
-        })
+        });
 
         if (res) {
             const allSubjects = await subjectsService.getAllSubjectsByCourseId(props.courseData.id);
             props.setSubjects(allSubjects);
-        }
-    }
+            const newWatchesList = await watchesService.getAllWatches();
+            props.setAllWatches(newWatchesList);
+        };
+    };
 
     return (
         <form className="AddSubjectForm" onSubmit={handleSubmit(onSubmit)}>
@@ -43,12 +49,22 @@ function AddSubjectForm(props: ownProps): JSX.Element {
                     <label htmlFor="associatedWatch-input">
                         Watch
                     </label>
-                    <input
-                        id="associatedWatch-input"
-                        type="text"
-                        placeholder="associated watch id"
-                        {...register("associatedWatch", { required: true })}
-                    />
+
+                    {props.allWatches ?
+
+                        <select
+                            id="associatedWatch-input"
+                            {...register("associatedWatch", { required: true })}>
+                            <option></option>
+
+                            {props.allWatches.map((watch: WatchModel) => {
+                                return <option key={watch.id} value={watch.id}>{watch.id}</option>
+                            })}
+
+                        </select> :
+
+                        <div>no watches</div>
+                    }
                 </div>
             </div>
 
@@ -58,6 +74,6 @@ function AddSubjectForm(props: ownProps): JSX.Element {
             </div>
         </form>
     );
-}
+};
 
 export default AddSubjectForm;

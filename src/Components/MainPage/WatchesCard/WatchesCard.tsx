@@ -22,8 +22,8 @@ function WatchesCard(): JSX.Element {
             <h2>Watches</h2>
 
             <div className={"watchesHeaderRow header-row row"}>
-                <span className="watch-name">{"Watch Name"}</span>
-                <span className="last-update">{"Last Update"}</span>
+                <span className="watch-name">{"Name"}</span>
+                <span className="last-update">{"Updated"}</span>
                 <span className="indication">{"Indication"}</span>
             </div>
 

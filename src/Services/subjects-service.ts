@@ -133,11 +133,11 @@ class SubjectsService {
         console.log("addNewSubject");
 
         let idAlreadyExist = corentSubjects?.filter(subject => {
-            return subject.id === newSubjectData.id;
+            return subject.id === newSubjectData.id || subject.associatedWatch === newSubjectData.associatedWatch;
         });
 
         if (idAlreadyExist && idAlreadyExist.length > 0) {
-            console.log("Id all ready in use");
+            console.log("Id or Associated watch all ready in use");
             return;
         };
 
