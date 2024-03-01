@@ -1,6 +1,7 @@
 import { DataSnapshot, get, push, ref, remove, set } from "firebase/database";
 import { CourseModel } from "../Models/course-modal";
 import { firebaseDB } from "../firebase-config";
+import { createLog } from "../Utils/logs";
 
 class CoursesService {
 
@@ -124,13 +125,15 @@ class CoursesService {
         };
     };
 
-    async deleteCourseByKey(courseKey: string): Promise<void> {
+    async deleteCourseByKey(courseKey: string, userEmail: string): Promise<void> {
         const dataRef = ref(firebaseDB, `courses/${courseKey}`);
         console.log("deleteCourseByKey");
 
         try {
             await remove(dataRef);
+            await createLog(firebaseDB, userEmail, `Delete ${courseKey} course`);
             console.log("Data deleted successfully!");
+
             return;
 
         } catch (error) {

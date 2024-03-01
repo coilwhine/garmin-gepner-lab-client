@@ -1,6 +1,7 @@
 import { DataSnapshot, get, push, ref, remove, set } from "firebase/database";
 import { firebaseDB } from "../firebase-config";
 import { SubjectModel } from "../Models/subject-modal";
+import { createLog } from "../Utils/logs";
 
 class SubjectsService {
 
@@ -159,12 +160,13 @@ class SubjectsService {
         };
     };
 
-    async deleteSubjectByKey(subjectKey: string): Promise<void> {
+    async deleteSubjectByKey(subjectKey: string, userEmail: string): Promise<void> {
         const dataRef = ref(firebaseDB, `subjects/${subjectKey}`);
         console.log("deleteSubjectByKey");
 
         try {
             await remove(dataRef);
+            await createLog(firebaseDB, userEmail, `Delete ${subjectKey} subject`);
             console.log("Data deleted successfully!");
             return;
 

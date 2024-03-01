@@ -1,6 +1,7 @@
 import { DataSnapshot, get, push, ref, remove, set } from "firebase/database";
 import { firebaseDB } from "../firebase-config";
 import { WatchModel } from "../Models/watch-modal";
+import { createLog } from "../Utils/logs";
 
 class WatchesService {
 
@@ -128,12 +129,13 @@ class WatchesService {
         };
     };
 
-    async deleteWatchByKey(watchtKey: string): Promise<void> {
+    async deleteWatchByKey(watchtKey: string, userEmail: string): Promise<void> {
         const dataRef = ref(firebaseDB, `watches/${watchtKey}`);
         console.log("deleteWatchByKey");
 
         try {
             await remove(dataRef);
+            await createLog(firebaseDB, userEmail, `Delete ${watchtKey} watch`);
             console.log("Data deleted successfully!");
             return;
 
