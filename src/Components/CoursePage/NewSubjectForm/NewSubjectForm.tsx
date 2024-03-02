@@ -4,13 +4,12 @@ import { SubjectModel } from "../../../Models/subject-modal";
 import subjectsService from "../../../Services/subjects-service";
 import { CourseModel } from "../../../Models/course-modal";
 import { WatchModel } from "../../../Models/watch-modal";
-import watchesService from "../../../Services/watches-service";
 
 type ownProps = {
     courseData: CourseModel,
     setSubjects: Function,
-    allWatches: WatchModel[]
-    setAllWatches: Function
+    freeWatches: WatchModel[]
+    setFreeWatches: Function
 }
 
 function AddSubjectForm(props: ownProps): JSX.Element {
@@ -26,8 +25,6 @@ function AddSubjectForm(props: ownProps): JSX.Element {
         if (res) {
             const allSubjects = await subjectsService.getAllSubjectsByCourseId(props.courseData.id);
             props.setSubjects(allSubjects);
-            const newWatchesList = await watchesService.getAllWatches();
-            props.setAllWatches(newWatchesList);
         };
     };
 
@@ -51,14 +48,12 @@ function AddSubjectForm(props: ownProps): JSX.Element {
                         Watch
                     </label>
 
-                    {props.allWatches ?
+                    {props.freeWatches ?
 
                         <select
                             id="associatedWatch-input"
                             {...register("associatedWatch", { required: true })}>
-                            <option></option>
-
-                            {props.allWatches.map((watch: WatchModel) => {
+                            {props.freeWatches.map((watch: WatchModel) => {
                                 return <option key={watch.id} value={watch.id}>{watch.id}</option>
                             })}
 
