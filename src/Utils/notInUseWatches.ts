@@ -4,10 +4,6 @@ import { WatchModel } from "../Models/watch-modal";
 
 export function notInUseWatches(startDate: string | Date, endDate: string | Date, allWatches: WatchModel[], allCourses: CourseModel[], allSubjects: SubjectModel[]): WatchModel[] | [] {
 
-
-    console.log(allCourses);
-
-
     const overlapingCourses = allCourses.filter((course: CourseModel) => {
 
         startDate = new Date(startDate);
@@ -25,8 +21,6 @@ export function notInUseWatches(startDate: string | Date, endDate: string | Date
         );
     });
 
-    console.log(overlapingCourses);
-
     const overlapingSubjectsWatchId: string[] = []
 
     allSubjects.forEach((sub: SubjectModel) => {
@@ -36,9 +30,6 @@ export function notInUseWatches(startDate: string | Date, endDate: string | Date
             }
         });
     });
-
-    console.log(overlapingSubjectsWatchId);
-
 
     const resoult = allWatches.filter((watch: WatchModel) => {
         return !overlapingSubjectsWatchId.includes(watch.id);
