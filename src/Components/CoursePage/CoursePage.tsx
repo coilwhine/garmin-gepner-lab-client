@@ -45,23 +45,25 @@ function CoursePage(): JSX.Element {
     }, [courseData])
 
     useEffect(() => {
-        watchesService.getAllWatches()
-            .then((watchwsRes: WatchModel[]) => {
-                coursesService.getAllCourses()
-                    .then((coursesRes: CourseModel[]) => {
-                        subjectsService.getAllSubjects()
-                            .then((subjectsRes: SubjectModel[]) => {
-                                setFreeWatches(notInUseWatches(
-                                    courseData.startDate,
-                                    courseData.endDate,
-                                    watchwsRes,
-                                    coursesRes,
-                                    subjectsRes
-                                ));
-                            })
-                    });
-            });
-    }, [subjects])
+        if (courseData) {
+            watchesService.getAllWatches()
+                .then((watchwsRes: WatchModel[]) => {
+                    coursesService.getAllCourses()
+                        .then((coursesRes: CourseModel[]) => {
+                            subjectsService.getAllSubjects()
+                                .then((subjectsRes: SubjectModel[]) => {
+                                    setFreeWatches(notInUseWatches(
+                                        courseData.startDate,
+                                        courseData.endDate,
+                                        watchwsRes,
+                                        coursesRes,
+                                        subjectsRes
+                                    ));
+                                })
+                        });
+                });
+        }
+    }, [subjects]);
 
     return (
         <>
