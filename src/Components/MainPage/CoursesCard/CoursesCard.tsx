@@ -5,9 +5,14 @@ import coursesService from "../../../Services/courses-service";
 import { useEffect, useState } from "react";
 import { CourseModel } from "../../../Models/course-modal";
 import NewCourseForm from "./NewCourseForm/NewCourseForm";
+import { SubjectModel } from "../../../Models/subject-modal";
 
+type ownProps = {
+    setAllSubjects: Function,
+    allSubjects: SubjectModel[]
+}
 
-function CoursesCard(): JSX.Element {
+function CoursesCard(props: ownProps): JSX.Element {
 
     const [coursesData, setCoursesData] = useState<CourseModel[] | null>(null)
     const [openNewCourseForm, setOpenNewCourseForm] = useState(false);
@@ -39,7 +44,7 @@ function CoursesCard(): JSX.Element {
             </div>
 
             {coursesData ? coursesData.map((data) => {
-                return <CourseRow key={data.id} courseData={data} />
+                return <CourseRow key={data.id} courseData={data} allSubjects={props.allSubjects} />
             }) : <div>No Courses Loaded...</div>}
 
             <button className="add-card-btn btn"
