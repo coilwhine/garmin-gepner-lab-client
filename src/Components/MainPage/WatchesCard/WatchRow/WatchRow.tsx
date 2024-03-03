@@ -23,7 +23,7 @@ function WatchRow(props: ownProps): JSX.Element {
     }
 
     useEffect(() => {
-        const owner = props.allSubjects.filter((res: SubjectModel) => {
+        const owner = props.allSubjects?.filter((res: SubjectModel) => {
             return res.associatedWatch === props.watchData.id;
         });
 
