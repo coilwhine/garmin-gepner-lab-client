@@ -43,39 +43,41 @@ function App() {
     <div className='App'>
 
       <BrowserRouter>
-        <Routes>
+        {
+          loading ?
 
-          {!loading ? (
-            <>
-              <Route path='*' element={<LayOut />}>
+            <Routes>
+              <Route path='/' element={<LayOut />}>
                 <Route index element={<LoadingPage />} />
               </Route>
-            </>
-          )
+            </Routes>
+
             :
-            userData.isLogged ? (
-              <>
-                <Route path='/' element={<LayOut />}>
-                  <Route index element={<MainPage />} />
-                  <Route path='/course/:key' element={<CoursePage />} />
 
-                  <Route path="/privacys-statement" element={<PrivacyStatementPage />} />
-                  <Route path='/login' element={<Navigate to={"/"} replace />} />
-                  <Route path="*" element={<ErrorPage />} />
-                </Route>
-              </>
-            ) : (
-              <>
-                <Route path='/' element={<LayOut />}>
-                  <Route path='/login' element={<LoginPage />} />
-                  <Route path="*" element={<Navigate to="/login" replace />} />
-                </Route>
-              </>
-            )
+            <Routes>
+              {userData.isLogged ? (
+                <>
+                  <Route path='/' element={<LayOut />}>
+                    <Route index element={<MainPage />} />
+                    <Route path='/course/:key' element={<CoursePage />} />
 
-          }
+                    <Route path="/privacys-statement" element={<PrivacyStatementPage />} />
+                    <Route path='/login' element={<Navigate to={"/"} replace />} />
+                    <Route path="*" element={<ErrorPage />} />
+                  </Route>
+                </>
+              ) : (
+                <>
+                  <Route path='/' element={<LayOut />}>
+                    <Route index element={<Navigate to={"/login"} replace />} />
+                    <Route path='/login' element={<LoginPage />} />
+                    <Route path="*" element={<ErrorPage />} />
+                  </Route>
+                </>
+              )}
 
-        </Routes>
+            </Routes>
+        }
       </BrowserRouter>
     </div>
   )

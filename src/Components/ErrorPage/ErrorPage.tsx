@@ -3,7 +3,7 @@ import "./ErrorPage.scss";
 
 function ErrorPage(): JSX.Element {
     return (
-        <div className="ErrorPage">
+        <div className="ErrorPage page">
             <h1>Sorry, Page Wasn't Found</h1>
             <span>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</span>
             <h1 className="error-number">404</h1>
