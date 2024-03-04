@@ -1,0 +1,10 @@
+.LoadingPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .card {
+        height: 20vh;
+    }
+}

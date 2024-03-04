@@ -3,12 +3,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export type AuthData = {
     token: string | null,
     email: string | null,
-    isLoged?: boolean
+    isLogged?: boolean
 }
 let initialState = {
     token: null,
     email: null,
-    isLoged: false
+    isLogged: false
 } as AuthData;
 
 export const authTokenSlice = createSlice({
@@ -19,7 +19,7 @@ export const authTokenSlice = createSlice({
             state = {
                 token: action.payload.token,
                 email: action.payload.email,
-                isLoged: true
+                isLogged: true
             };
             return state;
         },
@@ -28,7 +28,7 @@ export const authTokenSlice = createSlice({
             state = {
                 token: null,
                 email: null,
-                isLoged: false
+                isLogged: false
             };
             return state;
         }

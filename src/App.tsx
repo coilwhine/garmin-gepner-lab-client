@@ -1,10 +1,10 @@
-import { Navigate, Outlet, Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import './App.scss'
 import PrivacyStatementPage from './Components/PrivacyStatementPage/PrivacyStatementPage'
 import LayOut from './Components/LayOut/LayOut'
 import MainPage from './Components/MainPage/MainPage'
 import ErrorPage from './Components/ErrorPage/ErrorPage'
-import { useEffect, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { firebaseAuth, firebaseDB } from './firebase-config'
 import LoginPage from './Components/LoginPage/LoginPage'
@@ -12,65 +12,73 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AuthData, login, logout } from './App/authTokenSlice'
 import CoursePage from './Components/CoursePage/CoursePage'
 import { createLog } from './Utils/logs'
+import LoadingPage from './Components/LoadingPage/LoadingPage'
 
 function App() {
   const userData = useSelector((state: { authData: AuthData | null }) => state.authData);
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-
-  function PrivateRoute() {
-    return userData.isLoged ? <Outlet /> : <Navigate to="/login" replace />;
-  }
-
-  function AnonymousRoute() {
-    return userData.isLoged ? <Navigate to="/" replace /> : <Outlet />;
-  }
-
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path='/' element={<LayOut />}>
-        <Route path="/privacys-statement" element={<PrivacyStatementPage />} />
-
-        <Route path="/" element={<PrivateRoute />}>
-          <Route index element={<MainPage />} />
-          <Route path='/course/:key' element={<CoursePage />} />
-        </Route>
-
-        <Route element={<AnonymousRoute />}>
-          <Route path="/login" element={<LoginPage />} />
-        </Route>
-
-        <Route path="*" element={<ErrorPage />} />
-      </Route>
-    )
-  );
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user: any) => {
       if (user) {
+        setLoading(false);
         console.log("User Is Loged");
         dispatch(login({ token: user.accessToken, email: user.email }));
       } else {
+        setLoading(false);
         console.log("User Isn't Loged ");
         dispatch(logout());
       }
-    })
+    });
   }, []);
 
   useEffect(() => {
-    if (userData.isLoged) {
-      createLog(firebaseDB, userData.email, `user ${userData.isLoged ? "loged in" : "loged out"}`);
+    if (userData.isLogged) {
+      createLog(firebaseDB, userData.email, `user ${userData.isLogged ? "loged in" : "loged out"}`);
     }
   }, [userData]);
 
-  // const myRef = useRef(0);
-  // console.log(myRef);
-
-
   return (
     <div className='App'>
-      <RouterProvider router={router} />
+
+      <BrowserRouter>
+        <Routes>
+
+          {!loading ? (
+            <>
+              <Route path='*' element={<LayOut />}>
+                <Route index element={<LoadingPage />} />
+              </Route>
+            </>
+          )
+            :
+            userData.isLogged ? (
+              <>
+                <Route path='/' element={<LayOut />}>
+                  <Route index element={<MainPage />} />
+                  <Route path='/course/:key' element={<CoursePage />} />
+
+                  <Route path="/privacys-statement" element={<PrivacyStatementPage />} />
+                  <Route path='/login' element={<Navigate to={"/"} replace />} />
+                  <Route path="*" element={<ErrorPage />} />
+                </Route>
+              </>
+            ) : (
+              <>
+                <Route path='/' element={<LayOut />}>
+                  <Route path='/login' element={<LoginPage />} />
+                  <Route path="*" element={<Navigate to="/login" replace />} />
+                </Route>
+              </>
+            )
+
+          }
+
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }
 
-export default App
+export default App;
