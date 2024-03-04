@@ -27,14 +27,14 @@ function WatchRow(props: ownProps): JSX.Element {
             return res.associatedWatch === props.watchData.id;
         });
 
-        setWatchOwner(owner[0]?.id);
+        setWatchOwner(owner ? owner[0]?.id : null);
     }, []);
 
     return (
         <>
             <div className="WatchRow row">
                 <span>{props.watchData.id}</span>
-                <span>{watchOwner ? watchOwner : "null"}</span>
+                <span>{watchOwner ? watchOwner : "-"}</span>
                 <span>{props.watchData.timeOfUpdate ? dateFormater(props.watchData.timeOfUpdate.toString()) : "null"}</span>
                 <div className="update-indicator"></div>
                 <button className="btn delete-btn" onClick={(() => deleteFunc(props.watchData.id, props.watchData.key, "watches"))}>

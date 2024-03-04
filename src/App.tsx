@@ -4,7 +4,7 @@ import PrivacyStatementPage from './Components/PrivacyStatementPage/PrivacyState
 import LayOut from './Components/LayOut/LayOut'
 import MainPage from './Components/MainPage/MainPage'
 import ErrorPage from './Components/ErrorPage/ErrorPage'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { onAuthStateChanged } from 'firebase/auth'
 import { firebaseAuth, firebaseDB } from './firebase-config'
 import LoginPage from './Components/LoginPage/LoginPage'
@@ -40,10 +40,9 @@ function App() {
         </Route>
 
         <Route path="*" element={<ErrorPage />} />
-
       </Route>
     )
-  )
+  );
 
   useEffect(() => {
     onAuthStateChanged(firebaseAuth, (user: any) => {
@@ -61,7 +60,10 @@ function App() {
     if (userData.isLoged) {
       createLog(firebaseDB, userData.email, `user ${userData.isLoged ? "loged in" : "loged out"}`);
     }
-  }, [userData])
+  }, [userData]);
+
+  // const myRef = useRef(0);
+  // console.log(myRef);
 
 
   return (
