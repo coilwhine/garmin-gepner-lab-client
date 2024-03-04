@@ -71,6 +71,7 @@ function App() {
                   <Route path='/' element={<LayOut />}>
                     <Route index element={<Navigate to={"/login"} replace />} />
                     <Route path='/login' element={<LoginPage />} />
+                    <Route path="/privacys-statement" element={<PrivacyStatementPage />} />
                     <Route path="*" element={<ErrorPage />} />
                   </Route>
                 </>
