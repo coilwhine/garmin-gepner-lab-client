@@ -28,10 +28,10 @@ function WatchesCard(props: ownProps): JSX.Element {
             <h2>Watches</h2>
 
             <div className={"watchesHeaderRow header-row row"}>
-                <span className="watch-name">{"Name"}</span>
-                <span className="watch-holder">{"Holder"}</span>
+                <span className="watch-name">{"Id"}</span>
+                <span className="watch-holder">{"User"}</span>
                 <span className="last-update">{"Updated"}</span>
-                <span className="indication">{"Indication"}</span>
+                <span className="indication">{"stat"}</span>
             </div>
 
             {watchesData ? watchesData.map((data) => {
