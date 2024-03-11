@@ -2,6 +2,10 @@ import { DataSnapshot, get, push, ref, remove, set } from "firebase/database";
 import { firebaseDB } from "../firebase-config";
 import { WatchModel } from "../Models/watch-modal";
 import { createLog } from "../Utils/logs";
+import coursesService from "./courses-service";
+import { CourseModel } from "../Models/course-modal";
+import subjectsService from "./subjects-service";
+import { SubjectModel } from "../Models/subject-modal";
 
 class WatchesService {
 
@@ -141,6 +145,45 @@ class WatchesService {
 
         } catch (error) {
             console.error("Error deleting data: ", error);
+        };
+    };
+
+    async getCorentWatchHolders(): Promise<any | null> {
+
+        console.log("getCorentWatchesHolders");
+
+        try {
+
+            const corentTime = new Date();
+            const allCourses = await coursesService.getAllCourses();
+
+            const corentCourses = allCourses.filter((course: CourseModel) => {
+
+                const startDate = new Date(course.startDate);
+                const endDate = new Date(course.endDate);
+
+                if ((startDate <= corentTime) && (endDate >= corentTime)) {
+                    return course;
+                };
+            });
+
+            const corentCoursesId: string[] = []
+            corentCourses.map((course: CourseModel) => {
+                corentCoursesId.push(course.id);
+            });
+
+            const allSubjects = await subjectsService.getAllSubjects();
+
+            const corentSubjects = allSubjects.filter((subject: SubjectModel) => {
+                if (corentCoursesId.includes(subject.courseId)) {
+                    return subject;
+                };
+            });
+
+            return corentSubjects;
+
+        } catch (error) {
+            console.error(error);
         };
     };
 };

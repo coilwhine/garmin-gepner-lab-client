@@ -15,11 +15,17 @@ type ownProps = {
 function WatchesCard(props: ownProps): JSX.Element {
     const [watchesData, setWatchesData] = useState<WatchModel[] | null>(null);
     const [openNewWatchForm, setOpenNewWatchForm] = useState<boolean>(false);
+    const [corentWatchHolders, setCorentWatchHolders] = useState<SubjectModel[] | null>(null)
 
     useEffect(() => {
         watchesService.getAllWatches()
             .then((res) => {
                 setWatchesData(res);
+            });
+
+        watchesService.getCorentWatchHolders()
+            .then((res) => {
+                setCorentWatchHolders(res);
             });
     }, []);
 
@@ -35,7 +41,7 @@ function WatchesCard(props: ownProps): JSX.Element {
             </div>
 
             {watchesData ? watchesData.map((data) => {
-                return <WatchRow key={data.id} watchData={data} setWatchesData={setWatchesData} allSubjects={props.allSubjects} />
+                return <WatchRow key={data.id} watchData={data} setWatchesData={setWatchesData} allSubjects={props.allSubjects} corentWatchHolders={corentWatchHolders} />
             }) : <div>No Watches Loaded...</div>}
 
             <button className="add-card-btn btn"

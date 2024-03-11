@@ -9,7 +9,8 @@ import { SubjectModel } from "../../../../Models/subject-modal";
 type ownProps = {
     watchData: WatchModel,
     setWatchesData: Function,
-    allSubjects: SubjectModel[]
+    allSubjects: SubjectModel[],
+    corentWatchHolders: SubjectModel[]
 }
 
 function WatchRow(props: ownProps): JSX.Element {
@@ -23,7 +24,7 @@ function WatchRow(props: ownProps): JSX.Element {
     }
 
     useEffect(() => {
-        const owner = props.allSubjects?.filter((res: SubjectModel) => {
+        const owner = props.corentWatchHolders?.filter((res: SubjectModel) => {
             return res.associatedWatch === props.watchData.id;
         });
 
