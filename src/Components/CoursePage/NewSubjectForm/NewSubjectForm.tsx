@@ -8,7 +8,7 @@ import { WatchModel } from "../../../Models/watch-modal";
 type ownProps = {
     courseData: CourseModel,
     setSubjects: Function,
-    freeWatches: WatchModel[]
+    freeWatches: WatchModel[],
     setFreeWatches: Function
 }
 

@@ -11,7 +11,6 @@ import { IoTrashSharp } from "react-icons/io5";
 import DeletePopUp from "./DeletePopUp/DeletePopUp";
 import watchesService from "../../Services/watches-service";
 import { WatchModel } from "../../Models/watch-modal";
-import { notInUseWatches } from "../../Utils/notInUseWatches";
 
 
 function CoursePage(): JSX.Element {
@@ -46,23 +45,9 @@ function CoursePage(): JSX.Element {
 
     useEffect(() => {
         if (courseData) {
-            watchesService.getAllWatches()
-                .then((watchwsRes: WatchModel[]) => {
-                    coursesService.getAllCourses()
-                        .then((coursesRes: CourseModel[]) => {
-                            subjectsService.getAllSubjects()
-                                .then((subjectsRes: SubjectModel[]) => {
-                                    setFreeWatches(notInUseWatches(
-                                        courseData.startDate,
-                                        courseData.endDate,
-                                        watchwsRes,
-                                        coursesRes,
-                                        subjectsRes
-                                    ));
-                                })
-                        });
-                });
+            watchesService.getFreeWatchesByCourses(courseData);
         }
+
     }, [subjects]);
 
     return (

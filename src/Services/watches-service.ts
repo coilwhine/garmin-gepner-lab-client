@@ -148,7 +148,7 @@ class WatchesService {
         };
     };
 
-    async getCorentWatchHolders(): Promise<any | null> {
+    async getCorentWatchHolders(): Promise<SubjectModel[] | null> {
 
         console.log("getCorentWatchesHolders");
 
@@ -186,6 +186,54 @@ class WatchesService {
             console.error(error);
         };
     };
+
+    async getFreeWatchesByCourses(courseData: CourseModel): Promise<WatchModel[] | null> {
+
+        console.log("getFreeWatchesByDate");
+
+        const startDate = new Date(courseData.startDate);
+        const endDate = new Date(courseData.endDate);
+        const allWatches = await watchesService.getAllWatches();
+        const allCourses = await coursesService.getAllCourses();
+
+        // notInUseWatches(allWatches: WatchModel[], allCourses: CourseModel[], allSubjects: SubjectModel[]): WatchModel[] | [] {
+
+        //     const overlapingCourses = allCourses.filter((course: CourseModel) => {
+
+        //         startDate = new Date(startDate);
+        //         endDate = new Date(endDate);
+
+        //         const courseStartDate = new Date(course.startDate);
+        //         const courseEndDate = new Date(course.endDate);
+        //         const corentCourseStartDate = new Date(startDate);
+        //         const corentCourseEndDate = new Date(endDate);
+
+        //         return (
+        //             (corentCourseStartDate >= courseStartDate && corentCourseStartDate <= courseEndDate) ||
+        //             (corentCourseEndDate >= courseStartDate && corentCourseEndDate <= courseEndDate) ||
+        //             (corentCourseStartDate <= courseStartDate && corentCourseEndDate >= courseEndDate)
+        //         );
+        //     });
+
+        //     const overlapingSubjectsWatchId: string[] = []
+
+        //     allSubjects.forEach((sub: SubjectModel) => {
+        //         overlapingCourses.forEach((cur: CourseModel) => {
+        //             if (sub.courseId === cur.id) {
+        //                 overlapingSubjectsWatchId.push(sub.associatedWatch);
+        //             }
+        //         });
+        //     });
+
+        //     const resoult = allWatches.filter((watch: WatchModel) => {
+        //         return !overlapingSubjectsWatchId.includes(watch.id);
+        //     })
+
+        //     return resoult;
+        // }
+
+        return null;
+    }
 };
 
 const watchesService = new WatchesService();

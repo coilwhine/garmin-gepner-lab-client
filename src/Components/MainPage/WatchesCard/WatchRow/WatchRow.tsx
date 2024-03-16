@@ -29,7 +29,7 @@ function WatchRow(props: ownProps): JSX.Element {
         });
 
         setWatchOwner(owner ? owner[0]?.id : null);
-    }, []);
+    }, [props.corentWatchHolders]);
 
     return (
         <>
