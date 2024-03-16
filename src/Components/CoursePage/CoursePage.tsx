@@ -45,8 +45,9 @@ function CoursePage(): JSX.Element {
 
     useEffect(() => {
         if (courseData) {
-            watchesService.getFreeWatchesByCourses(courseData);
-        }
+            watchesService.getFreeWatchesByCourses(courseData)
+                .then((res) => setFreeWatches(res));
+        };
 
     }, [subjects]);
 
